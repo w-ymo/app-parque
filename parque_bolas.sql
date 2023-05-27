@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2023 a las 12:54:58
+-- Tiempo de generación: 27-05-2023 a las 12:58:43
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -49,7 +49,8 @@ CREATE TABLE `evento` (
   `nombre_evento` varchar(100) NOT NULL,
   `fecha_evento` date NOT NULL,
   `numero_sala` int(11) NOT NULL,
-  `es_cumple` tinyint(1) NOT NULL
+  `es_cumple` tinyint(1) NOT NULL,
+  `id_menu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -78,7 +79,8 @@ ALTER TABLE `administrador`
 -- Indices de la tabla `evento`
 --
 ALTER TABLE `evento`
-  ADD PRIMARY KEY (`id_evento`);
+  ADD PRIMARY KEY (`id_evento`),
+  ADD UNIQUE KEY `id_menu` (`id_menu`);
 
 --
 -- Indices de la tabla `menu`
