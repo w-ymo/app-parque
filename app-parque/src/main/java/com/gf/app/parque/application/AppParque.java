@@ -5,6 +5,9 @@
 
 package com.gf.app.parque.application;
 
+import com.gf.app.parque.controller.InicioController;
+import com.gf.app.parque.view.GUIInicio;
+
 /**
  *
  * @author noelp
@@ -12,6 +15,8 @@ package com.gf.app.parque.application;
 public class AppParque {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        GUIInicio in = new GUIInicio();
+        InicioController ic = new InicioController(in);
+        ic.launch();
     }
 }

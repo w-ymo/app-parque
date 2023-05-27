@@ -17,6 +17,7 @@ public class Evento {
     private LocalDate fecha_evento;
     private Integer numero_sala;
     private boolean es_cumple;
+    private Integer id_menu;
 
     public Integer getId_evento() {
         return id_evento;
