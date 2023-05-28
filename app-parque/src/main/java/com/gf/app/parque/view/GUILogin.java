@@ -49,24 +49,25 @@ public class GUILogin extends javax.swing.JFrame {
         setTextFields();
         setButtons();
     }
-    
-    
-    private void setTextFields(){
-        //hacer un panel que contenga a label y textfield y eso meterlo en el grid
+
+    private void setTextFields() {
+        //va un poco mejor pero no me acaba de convencer
         textFUserName = new JTextField();
         textFPassword = new JPasswordField();
         panelTextFields = new JPanel(new BorderLayout());
-        JPanel panelContenedor = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelTextFields.add(panelContenedor,BorderLayout.SOUTH);
-        panelContenedor.setAlignmentX(CENTER_ALIGNMENT);
+        JPanel panelGrid = new JPanel(new GridLayout(2, 1));
+        JPanel panelExtra1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panelExtra2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         this.getContentPane().add(panelTextFields);
         JLabel userName = new JLabel("Nombre de usuario");
+        panelExtra1.add(userName);
+        panelExtra1.add(textFUserName);
         JLabel contrasenia = new JLabel("Contraseña");
-        userName.setHorizontalAlignment(SwingConstants.LEFT);
-        panelContenedor.add(userName);
-        panelContenedor.add(textFUserName);
-        panelContenedor.add(contrasenia);
-        panelContenedor.add(textFPassword);
+        panelExtra2.add(contrasenia);
+        panelExtra2.add(textFPassword);
+        panelGrid.add(panelExtra1);
+        panelGrid.add(panelExtra2);
+        panelTextFields.add(panelGrid, BorderLayout.SOUTH);
     }
 
     private void setButtons() {
