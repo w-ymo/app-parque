@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -54,6 +53,8 @@ public class GUILogin extends javax.swing.JFrame {
         //va un poco mejor pero no me acaba de convencer
         textFUserName = new JTextField();
         textFPassword = new JPasswordField();
+        textFUserName.setPreferredSize(new Dimension(200, 25));
+        textFPassword.setPreferredSize(new Dimension(200, 25));
         panelTextFields = new JPanel(new BorderLayout());
         JPanel panelGrid = new JPanel(new GridLayout(2, 1));
         JPanel panelExtra1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
