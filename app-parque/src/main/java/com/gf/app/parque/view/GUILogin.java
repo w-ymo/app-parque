@@ -55,8 +55,8 @@ public class GUILogin extends javax.swing.JFrame {
         //va un poco mejor pero no me acaba de convencer
         textFdni = new JTextField();
         textFPassword = new JPasswordField();
-        textFdni.setPreferredSize(new Dimension(200, 25));
-        textFPassword.setPreferredSize(new Dimension(200, 25));
+        textFdni.setPreferredSize(new Dimension(200, 30));
+        textFPassword.setPreferredSize(new Dimension(200, 30));
         panelTextFields = new JPanel(new BorderLayout());
         GridLayout gl = new GridLayout(2, 2, 5, 20);
         JPanel panelExtra = new JPanel(gl);
