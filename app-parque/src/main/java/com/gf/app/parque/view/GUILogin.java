@@ -28,7 +28,7 @@ public class GUILogin extends javax.swing.JFrame {
     private JPanel panelBotones;
     private JPanel panelTextFields;
 
-    private JTextField textFUserName;
+    private JTextField textFdni;
     private JPasswordField textFPassword;
 
     private JButton cancelarBut;
@@ -53,9 +53,9 @@ public class GUILogin extends javax.swing.JFrame {
 
     private void setTextFields() {
         //va un poco mejor pero no me acaba de convencer
-        textFUserName = new JTextField();
+        textFdni = new JTextField();
         textFPassword = new JPasswordField();
-        textFUserName.setPreferredSize(new Dimension(200, 25));
+        textFdni.setPreferredSize(new Dimension(200, 25));
         textFPassword.setPreferredSize(new Dimension(200, 25));
         panelTextFields = new JPanel(new BorderLayout());
         GridLayout gl = new GridLayout(2, 2, 5, 20);
@@ -64,9 +64,9 @@ public class GUILogin extends javax.swing.JFrame {
         nombre.setHorizontalAlignment(SwingConstants.RIGHT);
         panelExtra.add(nombre);
         JPanel panelTF1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panelTF1.add(textFUserName);
+        panelTF1.add(textFdni);
         panelExtra.add(panelTF1);
-        JLabel contra = new JLabel("Contraseñas: ");
+        JLabel contra = new JLabel("Contraseña: ");
         contra.setHorizontalAlignment(SwingConstants.RIGHT);
         panelExtra.add(contra);
         JPanel panelTF2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
