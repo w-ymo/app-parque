@@ -7,6 +7,7 @@ package com.gf.app.parque.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -42,8 +44,8 @@ public class GUILogin extends javax.swing.JFrame {
 
     private void setFrame() {
         this.setTitle("Acceder");
-        this.setExtendedState(MAXIMIZED_BOTH);
         this.setSize(tamPantalla);
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setLayout(new GridLayout(2, 1));
         setTextFields();
         setButtons();
@@ -56,19 +58,22 @@ public class GUILogin extends javax.swing.JFrame {
         textFUserName.setPreferredSize(new Dimension(200, 25));
         textFPassword.setPreferredSize(new Dimension(200, 25));
         panelTextFields = new JPanel(new BorderLayout());
-        JPanel panelGrid = new JPanel(new GridLayout(2, 1));
-        JPanel panelExtra1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel panelExtra2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        GridLayout gl = new GridLayout(2, 2, 5, 20);
+        JPanel panelExtra = new JPanel(gl);
+        JLabel nombre = new JLabel("Nombre: ");
+        nombre.setHorizontalAlignment(SwingConstants.RIGHT);
+        panelExtra.add(nombre);
+        JPanel panelTF1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelTF1.add(textFUserName);
+        panelExtra.add(panelTF1);
+        JLabel contra = new JLabel("Contraseñas: ");
+        contra.setHorizontalAlignment(SwingConstants.RIGHT);
+        panelExtra.add(contra);
+        JPanel panelTF2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelTF2.add(textFPassword);
+        panelExtra.add(panelTF2);
+        panelTextFields.add(panelExtra, BorderLayout.SOUTH);
         this.getContentPane().add(panelTextFields);
-        JLabel userName = new JLabel("Nombre de usuario");
-        panelExtra1.add(userName);
-        panelExtra1.add(textFUserName);
-        JLabel contrasenia = new JLabel("Contraseña");
-        panelExtra2.add(contrasenia);
-        panelExtra2.add(textFPassword);
-        panelGrid.add(panelExtra1);
-        panelGrid.add(panelExtra2);
-        panelTextFields.add(panelGrid, BorderLayout.SOUTH);
     }
 
     private void setButtons() {
@@ -105,40 +110,40 @@ public class GUILogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUILogin().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(GUILogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new GUILogin().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
