@@ -4,17 +4,48 @@
  */
 package com.gf.app.parque.view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Toolkit;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 /**
  *
  * @author noelp
  */
 public class GUIPrincipal extends javax.swing.JFrame {
+    
+    private Dimension tamPantalla = Toolkit.getDefaultToolkit().getScreenSize();
+    
+    private JPanel panelMenu;
+    
+    private JButton botonReserva;
 
     /**
      * Creates new form GUIPrincipal
      */
     public GUIPrincipal() {
         initComponents();
+        setFrame();
+    }
+    
+    private void setFrame() {
+        this.setTitle("Reservar");
+        this.setSize(tamPantalla);
+        this.setExtendedState(MAXIMIZED_BOTH);
+        this.getContentPane().setLayout(new BorderLayout());
+        setButtons();
+    }
+    
+    private void setButtons() {
+        panelMenu = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        botonReserva = new JButton("Reserva");
+        botonReserva.setPreferredSize(new Dimension(tamPantalla.width, 70));
+        panelMenu.add(botonReserva);
+        this.getContentPane().add(panelMenu, BorderLayout.CENTER);
     }
 
     /**

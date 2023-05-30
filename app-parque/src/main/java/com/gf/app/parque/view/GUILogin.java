@@ -85,6 +85,38 @@ public class GUILogin extends javax.swing.JFrame {
         panelBotones.add(cancelarBut);
     }
 
+    public JTextField getTextFdni() {
+        return textFdni;
+    }
+
+    public void setTextFdni(JTextField textFdni) {
+        this.textFdni = textFdni;
+    }
+
+    public JPasswordField getTextFPassword() {
+        return textFPassword;
+    }
+
+    public void setTextFPassword(JPasswordField textFPassword) {
+        this.textFPassword = textFPassword;
+    }
+
+    public JButton getCancelarBut() {
+        return cancelarBut;
+    }
+
+    public void setCancelarBut(JButton cancelarBut) {
+        this.cancelarBut = cancelarBut;
+    }
+
+    public JButton getAceptarBut() {
+        return aceptarBut;
+    }
+
+    public void setAceptarBut(JButton aceptarBut) {
+        this.aceptarBut = aceptarBut;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
