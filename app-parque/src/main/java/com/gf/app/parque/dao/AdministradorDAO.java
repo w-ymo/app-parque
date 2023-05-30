@@ -20,7 +20,7 @@ public class AdministradorDAO {
     public Administrador selectDNI(String dni) throws SQLException {
         Administrador admin = null;
         try ( Connection con = ConexionBD.getConnection()) {
-            String sql = "SELECT * FROM administrador WHERE dni_admin='?'";
+            String sql = "SELECT * FROM administrador WHERE dni_admin=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();

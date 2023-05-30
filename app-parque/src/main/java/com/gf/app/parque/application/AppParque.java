@@ -6,8 +6,12 @@ package com.gf.app.parque.application;
 
 import com.gf.app.parque.controller.InicioController;
 import com.gf.app.parque.controller.LoginController;
+import com.gf.app.parque.dao.AdministradorDAO;
 import com.gf.app.parque.view.GUIInicio;
 import com.gf.app.parque.view.GUILogin;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,9 +20,17 @@ import com.gf.app.parque.view.GUILogin;
 public class AppParque {
 
     public static void main(String[] args) {
+//        try {
+//            AdministradorDAO ad = new AdministradorDAO();
+//            System.out.println(ad.selectDNI("12427920P"));
+//            
+            
         GUIInicio in = new GUIInicio();
         InicioController ic = new InicioController(in);
         ic.launch();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AppParque.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 }
