@@ -48,12 +48,12 @@ public class LoginController {
                     vista.dispose();
                     GUIPrincipal principal = new GUIPrincipal();
                     //meterla en el controlador
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(vista, "Pues te has confundido");
-                    vista.getTextFdni().setForeground(Color.red);
-                    vista.getTextFPassword().setForeground(Color.red);
+                    vista.getTextFdni().setBackground(Color.red);
+                    vista.getTextFPassword().setBackground(Color.red);
                 }
-                
+
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos.");
             }
@@ -62,7 +62,6 @@ public class LoginController {
     };
 
     private boolean comprobarDatos() throws SQLException {
-        boolean esCorrecto = false;
         if (Validaciones.validateDni(dni)) {
             Administrador admin = adminDAO.selectDNI(dni);
             if (admin != null) {
