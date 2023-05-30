@@ -38,6 +38,7 @@ public class LoginController {
             vistaPadre.setVisible(true);
         } else {
             dni = vista.getTextFdni().getText();
+            password = "";
             char[] passwordChar = vista.getTextFPassword().getPassword();
             for (char c : passwordChar) {
                 password += c;
@@ -47,7 +48,7 @@ public class LoginController {
                     //lanza al menu principal
                     vista.dispose();
                     GUIPrincipal principal = new GUIPrincipal();
-                    //meterla en el controlador
+                    PrincipalController pc = new PrincipalController(vistaPadre, principal);
                 } else {
                     JOptionPane.showMessageDialog(vista, "Pues te has confundido");
                     vista.getTextFdni().setBackground(Color.red);

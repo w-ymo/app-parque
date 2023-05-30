@@ -25,13 +25,10 @@ public class Validaciones {
     }
 
     private static boolean modulo23(String dni) {
-        int num = Integer.parseInt(dni.substring(0, dni.length() - 2));
-        char letra = dni.substring(dni.length() - 2).charAt(0);
+        int num = Integer.parseInt(dni.substring(0, dni.length() - 1));
+        char letra = dni.substring(dni.length() - 1).charAt(0);
         int resto = num % 23;
-        if (letrasDNI.charAt(resto) == letra) {
-            return true;
-        }
-        return false;
+        return letrasDNI.charAt(resto) == letra;
     }
 
 }

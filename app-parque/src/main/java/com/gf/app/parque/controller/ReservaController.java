@@ -4,10 +4,19 @@
  */
 package com.gf.app.parque.controller;
 
+import com.gf.app.parque.view.GUIPrincipal;
+import com.gf.app.parque.view.GUIReserva;
+
 /**
  *
  * @author noelp
  */
 public class ReservaController {
+    
+    private GUIPrincipal vistaPadre;
+    
+    private GUIReserva vista;
+    
+    
     
 }
