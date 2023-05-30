@@ -4,11 +4,15 @@
  */
 package com.gf.app.parque.controller;
 
+import com.gf.app.parque.dao.AdministradorDAO;
+import com.gf.app.parque.entities.Administrador;
+import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIInicio;
 import com.gf.app.parque.view.GUILogin;
+import com.gf.app.parque.view.GUIPrincipal;
+import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -22,8 +26,10 @@ public class LoginController {
 
     private GUILogin vista;
 
+    private AdministradorDAO adminDAO;
+
     private String dni;
-    private char[] password;
+    private String password;
 
     private ActionListener al = (e) -> {
         JButton but = (JButton) e.getSource();
@@ -32,21 +38,50 @@ public class LoginController {
             vistaPadre.setVisible(true);
         } else {
             dni = vista.getTextFdni().getText();
-            password = vista.getTextFPassword().getPassword();
-            //if (comprobarDatos()) {
-
-            //}
+            char[] passwordChar = vista.getTextFPassword().getPassword();
+            for (char c : passwordChar) {
+                password += c;
+            }
+            try {
+                if (comprobarDatos()) {
+                    //lanza al menu principal
+                    vista.dispose();
+                    GUIPrincipal principal = new GUIPrincipal();
+                    //meterla en el controlador
+                }else{
+                    JOptionPane.showMessageDialog(vista, "Pues te has confundido");
+                    vista.getTextFdni().setForeground(Color.red);
+                    vista.getTextFPassword().setForeground(Color.red);
+                }
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos.");
+            }
         }
 
     };
 
+    private boolean comprobarDatos() throws SQLException {
+        boolean esCorrecto = false;
+        if (Validaciones.validateDni(dni)) {
+            Administrador admin = adminDAO.selectDNI(dni);
+            if (admin != null) {
+                if (admin.getPassword_admin().equals(this.password)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public LoginController(GUILogin vista, GUIInicio parent) {
         this.vistaPadre = parent;
         this.vista = vista;
+        this.adminDAO = new AdministradorDAO();
         addActionListener();
         launchView();
     }
-    
+
     private void addActionListener() {
         vista.getAceptarBut().addActionListener(al);
         vista.getCancelarBut().addActionListener(al);

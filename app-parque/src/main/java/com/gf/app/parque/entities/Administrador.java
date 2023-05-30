@@ -16,7 +16,6 @@ public class Administrador {
     private String telefono_admin;
     private String correo_admin;
     private String puesto_admin;
-    private String userName_admin;
     private String password_admin;
 
     public String getDni_admin() {
@@ -67,14 +66,6 @@ public class Administrador {
         this.puesto_admin = puesto_admin;
     }
 
-    public String getUserName_admin() {
-        return userName_admin;
-    }
-
-    public void setUserName_admin(String userName_admin) {
-        this.userName_admin = userName_admin;
-    }
-
     public String getPassword_admin() {
         return password_admin;
     }
@@ -85,7 +76,7 @@ public class Administrador {
 
     @Override
     public String toString() {
-        return "Administrador(" + userName_admin + "): Nombre y apellidos=" + nombre_admin + " " + apellidos_admin + ", telefono=" + telefono_admin + ", correo=" + correo_admin + ", puesto=" + puesto_admin;
+        return "Administrador(" + dni_admin + "): Nombre y apellidos=" + nombre_admin + " " + apellidos_admin + ", telefono=" + telefono_admin + ", correo=" + correo_admin + ", puesto=" + puesto_admin;
     }
 
 }

@@ -5,6 +5,7 @@
 package com.gf.app.parque.controller;
 
 import com.gf.app.parque.view.GUIInicio;
+import com.gf.app.parque.view.GUILogin;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
@@ -24,8 +25,8 @@ public class InicioController {
     private ActionListener al = (e) -> {
         JButton opt = (JButton) (e.getSource());
         if (opt.equals(vista.getOptButtons().get(0))) {
-            //pasa a la ventana login
-            System.out.println("Login");
+            vista.setVisible(false);
+            LoginController lc = new LoginController(new GUILogin(), vista);
         } else if (opt.equals(vista.getOptButtons().get(1))) {
             //pasa a la ventana register
             System.out.println("register");
