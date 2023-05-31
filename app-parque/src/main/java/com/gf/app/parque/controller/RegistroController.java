@@ -68,7 +68,7 @@ public class RegistroController {
         }
 
     };
-
+    
     private boolean comprobarDatos() throws SQLException {
         if (Validaciones.validateDni(dni)) {
             Administrador admin = adminLogic.selectDni(dni);

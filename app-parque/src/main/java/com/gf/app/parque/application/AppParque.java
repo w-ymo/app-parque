@@ -14,17 +14,8 @@ import com.gf.app.parque.view.GUIInicio;
 public class AppParque {
 
     public static void main(String[] args) {
-//        try {
-//            AdministradorDAO ad = new AdministradorDAO();
-//            System.out.println(ad.selectDNI("12427920P"));
-//            
-            
         GUIInicio in = new GUIInicio();
         InicioController ic = new InicioController(in);
         ic.launch();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(AppParque.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
     }
 }

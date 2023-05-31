@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -28,10 +29,12 @@ public class GUIReserva extends javax.swing.JFrame {
 
     private JPanel panelOpciones;
     private JPanel panelBotones;
-
+    
     private String[] textosCampos = {"Nombre: ", "Fecha: ", "Numero de participantes: ", "Menu: ", "Sala: "};
     private List<JTextField> camposReserva = new ArrayList<>();
 
+    private JComboBox combo;
+    
     private JButton cancelarBut;
     private JButton aceptarBut;
 
