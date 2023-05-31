@@ -39,7 +39,7 @@ public class AdministradorDAO {
     }
 
     public int updateId (Administrador a) throws SQLException {
-        String sql = "UPDATE administrador SET nombre_admin=?,apellidos_admin=?,telefono_admin=?,correo_admin=?,puesto_admin=?,password_admin=? WHERE dni_admin=?)";
+        String sql = "UPDATE administrador SET nombre_admin=?,apellidos_admin=?,telefono_admin=?,correo_admin=?,puesto_admin=?,password_admin=? WHERE dni_admin=?";
         try ( Connection con = ConexionBD.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, a.getNombre_admin());

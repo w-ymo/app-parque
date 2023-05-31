@@ -4,7 +4,6 @@
  */
 package com.gf.app.parque.controller;
 
-import com.gf.app.parque.dao.AdministradorDAO;
 import com.gf.app.parque.entities.Administrador;
 import com.gf.app.parque.logic.AdministradorLogic;
 import com.gf.app.parque.resources.Validaciones;
@@ -68,7 +67,7 @@ public class RegistroController {
         }
 
     };
-    
+
     private boolean comprobarDatos() throws SQLException {
         if (Validaciones.validateDni(dni)) {
             Administrador admin = adminLogic.selectDni(dni);
