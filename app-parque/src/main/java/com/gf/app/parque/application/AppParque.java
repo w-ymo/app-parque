@@ -5,13 +5,7 @@
 package com.gf.app.parque.application;
 
 import com.gf.app.parque.controller.InicioController;
-import com.gf.app.parque.controller.LoginController;
-import com.gf.app.parque.dao.AdministradorDAO;
 import com.gf.app.parque.view.GUIInicio;
-import com.gf.app.parque.view.GUILogin;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

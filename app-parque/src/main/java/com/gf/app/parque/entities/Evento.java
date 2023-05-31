@@ -59,6 +59,14 @@ public class Evento {
         this.es_cumple = es_cumple;
     }
 
+    public Integer getId_menu() {
+        return id_menu;
+    }
+
+    public void setId_menu(Integer id_menu) {
+        this.id_menu = id_menu;
+    }
+    
     @Override
     public String toString() {
         return "Evento(" + id_evento + "): Nombre=" + nombre_evento + ", fecha=" + fecha_evento + ", numero sala=" + numero_sala;
