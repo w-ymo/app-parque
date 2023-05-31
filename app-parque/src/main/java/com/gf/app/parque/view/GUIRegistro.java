@@ -63,7 +63,7 @@ public class GUIRegistro extends javax.swing.JFrame {
         panelTextFields = new JPanel(new BorderLayout());
         GridLayout gl = new GridLayout(3, 2, 5, 20);
         JPanel panelExtra = new JPanel(gl);
-        JLabel nombre = new JLabel("Nombre: ");
+        JLabel nombre = new JLabel("DNI: ");
         nombre.setHorizontalAlignment(SwingConstants.RIGHT);
         panelExtra.add(nombre);
         JPanel panelTF1 = new JPanel(new FlowLayout(FlowLayout.LEFT));

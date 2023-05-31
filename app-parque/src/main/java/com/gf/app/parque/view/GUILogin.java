@@ -7,7 +7,6 @@ package com.gf.app.parque.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -60,7 +59,7 @@ public class GUILogin extends javax.swing.JFrame {
         panelTextFields = new JPanel(new BorderLayout());
         GridLayout gl = new GridLayout(2, 2, 5, 20);
         JPanel panelExtra = new JPanel(gl);
-        JLabel nombre = new JLabel("Nombre: ");
+        JLabel nombre = new JLabel("DNI: ");
         nombre.setHorizontalAlignment(SwingConstants.RIGHT);
         panelExtra.add(nombre);
         JPanel panelTF1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
