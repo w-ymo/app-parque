@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class Validaciones {
 
-    private static String letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
+    private static final String LETRAS_DNI = "TRWAGMYFPDXBNJZSQVHLCKE";
 
     public static boolean validateDni(String dni) {
         Pattern pat = Pattern.compile("[0-9]{8}[A-Za-z]");
@@ -28,7 +28,7 @@ public class Validaciones {
         int num = Integer.parseInt(dni.substring(0, dni.length() - 1));
         char letra = dni.substring(dni.length() - 1).charAt(0);
         int resto = num % 23;
-        return letrasDNI.charAt(resto) == letra;
+        return LETRAS_DNI.charAt(resto) == letra;
     }
 
 }

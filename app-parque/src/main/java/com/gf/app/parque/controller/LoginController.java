@@ -6,6 +6,7 @@ package com.gf.app.parque.controller;
 
 import com.gf.app.parque.dao.AdministradorDAO;
 import com.gf.app.parque.entities.Administrador;
+import com.gf.app.parque.logic.AdministradorLogic;
 import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIInicio;
 import com.gf.app.parque.view.GUILogin;
@@ -26,7 +27,7 @@ public class LoginController {
 
     private GUILogin vista;
 
-    private AdministradorDAO adminDAO;
+    private AdministradorLogic adminLogic;
 
     private String dni;
     private String password;
@@ -64,7 +65,7 @@ public class LoginController {
 
     private boolean comprobarDatos() throws SQLException {
         if (Validaciones.validateDni(dni)) {
-            Administrador admin = adminDAO.selectDNI(dni);
+            Administrador admin = adminLogic.selectDni(dni);
             if (admin != null) {
                 if (admin.getPassword_admin().equals(this.password)) {
                     return true;
@@ -77,7 +78,7 @@ public class LoginController {
     public LoginController(GUILogin vista, GUIInicio parent) {
         this.vistaPadre = parent;
         this.vista = vista;
-        this.adminDAO = new AdministradorDAO();
+        this.adminLogic = new AdministradorLogic();
         addActionListener();
         launchView();
     }

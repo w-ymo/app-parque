@@ -6,6 +6,7 @@ package com.gf.app.parque.controller;
 
 import com.gf.app.parque.dao.AdministradorDAO;
 import com.gf.app.parque.entities.Administrador;
+import com.gf.app.parque.logic.AdministradorLogic;
 import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIInicio;
 import com.gf.app.parque.view.GUILogin;
@@ -27,12 +28,12 @@ public class RegistroController {
 
     private GUIRegistro vista;
 
-    private AdministradorDAO adminDAO;
+    private AdministradorLogic adminLogic;
 
     private String dni;
     private String password;
     private String passwordB;
-    
+
     private int cod_error; //va a ser el código de error para imprimir el mensaje correspondiente
 
     private ActionListener al = (e) -> {
@@ -61,7 +62,6 @@ public class RegistroController {
                     vista.getTextFdni().setBackground(Color.red);
                     vista.getTextFPassword().setBackground(Color.red);
                 }
-
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos.");
             }
@@ -71,11 +71,13 @@ public class RegistroController {
 
     private boolean comprobarDatos() throws SQLException {
         if (Validaciones.validateDni(dni)) {
-            Administrador admin = adminDAO.selectDNI(dni);
+            Administrador admin = adminLogic.selectDni(dni);
             if (admin != null) {
-                if (admin.getPassword_admin() == null) {
+                if (admin.getPassword_admin().isEmpty()) {
                     if (password.equals(passwordB)) {
-                        return true;
+                        if (password.length() > 4) {
+                            return adminLogic.update(dni, password);
+                        }
                     }
                 }
             }
@@ -86,7 +88,7 @@ public class RegistroController {
     public RegistroController(GUIRegistro vista, GUIInicio parent) {
         this.vistaPadre = parent;
         this.vista = vista;
-        this.adminDAO = new AdministradorDAO();
+        this.adminLogic = new AdministradorLogic();
         addActionListener();
         launchView();
     }
