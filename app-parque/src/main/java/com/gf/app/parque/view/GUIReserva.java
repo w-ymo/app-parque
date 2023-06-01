@@ -182,12 +182,20 @@ public class GUIReserva extends javax.swing.JFrame {
         this.nombreEvento = nombreEvento;
     }
 
-    public JDatePickerImpl getPanelPicker() {
-        return panelPicker;
+    public UtilDateModel getModelo() {
+        return modelo;
     }
 
-    public void setPanelPicker(JDatePickerImpl panelPicker) {
-        this.panelPicker = panelPicker;
+    public void setModelo(UtilDateModel modelo) {
+        this.modelo = modelo;
+    }
+
+    public JComboBox<String> getOpcionesMenu() {
+        return opcionesMenu;
+    }
+
+    public void setOpcionesMenu(JComboBox<String> opcionesMenu) {
+        this.opcionesMenu = opcionesMenu;
     }
 
     public JTextField getNumeroParticipantes() {
