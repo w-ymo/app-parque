@@ -5,6 +5,7 @@
 package com.gf.app.parque.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -12,12 +13,22 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import org.jdatepicker.AbstractDateModel;
+import org.jdatepicker.JDateComponentFactory;
+import org.jdatepicker.impl.DateComponentFormatter;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -29,11 +40,20 @@ public class GUIReserva extends javax.swing.JFrame {
 
     private JPanel panelOpciones;
     private JPanel panelBotones;
-    
-    private String[] textosCampos = {"Nombre: ", "Fecha: ", "Numero de participantes: ", "Menu: ", "Sala: "};
-    private List<JTextField> camposReserva = new ArrayList<>();
+    private JPanel panelCentrar;
 
-    private JComboBox combo;
+    private final String[] textosCampos = {"Nombre: ", "Fecha: ", "Numero de participantes: ", "Menu: ", "Sala: ", "Es cumple: "};
+
+    private JTextField nombreEvento;
+    //fecha
+    UtilDateModel modelo = new UtilDateModel();
+    private JDatePanelImpl panelDate = new JDatePanelImpl(modelo, new Properties());
+    private JDatePickerImpl panelPicker = new JDatePickerImpl(panelDate, new DateComponentFormatter());
+    //mas movidas
+    private JTextField numeroParticipantes;
+    private JComboBox<String> opcionesMenu = new JComboBox<>();
+    private JComboBox<String> opcionesSala = new JComboBox<>();
+    private JCheckBox checkIsCumple;
     
     private JButton cancelarBut;
     private JButton aceptarBut;
@@ -57,20 +77,92 @@ public class GUIReserva extends javax.swing.JFrame {
 
     private void setTextFields() {
         panelOpciones = new JPanel(new BorderLayout());
-        JPanel panelExtra = new JPanel(new GridLayout(textosCampos.length, 2, 5, 20));
-        for (String textoCampo : textosCampos) {
-            JTextField tf = new JTextField();
-            tf.setPreferredSize(new Dimension(400, 30));
-            JLabel texto = new JLabel(textoCampo);
-            texto.setHorizontalAlignment(SwingConstants.RIGHT);
-            JPanel panelTF = new JPanel(new FlowLayout(FlowLayout.LEFT));
-            panelExtra.add(texto);
-            panelTF.add(tf);
-            panelExtra.add(panelTF);
-            camposReserva.add(tf);
-        }
-        panelOpciones.add(panelExtra, BorderLayout.SOUTH);
+        panelCentrar = new JPanel(new GridLayout(6, 0));
+        setTFNombreField();
+        setPickerFechaField();
+        setTFNumeroParticipantes();
+        setComboOpcionMenu();
+        setComboNumeroSala();
+        setRadioIsCumple();
+        panelOpciones.add(panelCentrar, BorderLayout.SOUTH);
         this.getContentPane().add(panelOpciones);
+    }
+
+    private void setTFNombreField() {
+        nombreEvento = new JTextField();
+        nombreEvento.setPreferredSize(new Dimension(200, 30));
+        JPanel panelExtra = new JPanel(new GridLayout(0, 2));
+        JLabel texto = new JLabel(textosCampos[0]);
+        texto.setHorizontalAlignment(SwingConstants.RIGHT);
+        JPanel panelTF = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelExtra.add(texto);
+        panelTF.add(nombreEvento);
+        //panelTF.setBorder(BorderFactory.createLineBorder(Color.black, 10));
+        panelExtra.add(panelTF);
+        panelCentrar.add(panelExtra);
+    }
+
+    private void setPickerFechaField() {
+        JPanel panelExtra = new JPanel(new GridLayout(0, 2));
+        JLabel texto = new JLabel(textosCampos[1]);
+        texto.setHorizontalAlignment(SwingConstants.RIGHT);
+        JPanel panelTF = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelExtra.add(texto);
+        panelTF.add(panelPicker);
+        //panelTF.setBorder(BorderFactory.createLineBorder(Color.black, 10));
+        panelExtra.add(panelTF);
+        panelCentrar.add(panelExtra);
+    }
+
+    private void setTFNumeroParticipantes() {
+        numeroParticipantes = new JTextField();
+        numeroParticipantes.setPreferredSize(new Dimension(200, 30));
+        JPanel panelExtra = new JPanel(new GridLayout(0, 2));
+        JLabel texto = new JLabel(textosCampos[2]);
+        texto.setHorizontalAlignment(SwingConstants.RIGHT);
+        JPanel panelTF = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelExtra.add(texto);
+        panelTF.add(numeroParticipantes);
+        //panelTF.setBorder(BorderFactory.createLineBorder(Color.black, 10));
+        panelExtra.add(panelTF);
+        panelCentrar.add(panelExtra);
+    }
+
+    private void setComboOpcionMenu() {
+        JPanel panelExtra = new JPanel(new GridLayout(0, 2));
+        JLabel texto = new JLabel(textosCampos[3]);
+        texto.setHorizontalAlignment(SwingConstants.RIGHT);
+        JPanel panelTF = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelExtra.add(texto);
+        panelTF.add(opcionesMenu);
+        //panelTF.setBorder(BorderFactory.createLineBorder(Color.black, 10));
+        panelExtra.add(panelTF);
+        panelCentrar.add(panelExtra);
+    }
+
+    private void setComboNumeroSala() {
+        JPanel panelExtra = new JPanel(new GridLayout(0, 2));
+        JLabel texto = new JLabel(textosCampos[4]);
+        texto.setHorizontalAlignment(SwingConstants.RIGHT);
+        JPanel panelTF = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelExtra.add(texto);
+        panelTF.add(opcionesSala);
+        //panelTF.setBorder(BorderFactory.createLineBorder(Color.black, 10));
+        panelExtra.add(panelTF);
+        panelCentrar.add(panelExtra);
+    }
+
+    private void setRadioIsCumple() {
+        checkIsCumple = new JCheckBox();
+        JPanel panelExtra = new JPanel(new GridLayout(0, 2));
+        JLabel texto = new JLabel(textosCampos[5]);
+        texto.setHorizontalAlignment(SwingConstants.RIGHT);
+        JPanel panelTF = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelExtra.add(texto);
+        panelTF.add(checkIsCumple);
+        //panelTF.setBorder(BorderFactory.createLineBorder(Color.black, 10));
+        panelExtra.add(panelTF);
+        panelCentrar.add(panelExtra);
     }
 
     private void setButtons() {
@@ -82,6 +174,65 @@ public class GUIReserva extends javax.swing.JFrame {
         panelBotones.add(cancelarBut);
     }
 
+    public JTextField getNombreEvento() {
+        return nombreEvento;
+    }
+
+    public void setNombreEvento(JTextField nombreEvento) {
+        this.nombreEvento = nombreEvento;
+    }
+
+    public JDatePickerImpl getPanelPicker() {
+        return panelPicker;
+    }
+
+    public void setPanelPicker(JDatePickerImpl panelPicker) {
+        this.panelPicker = panelPicker;
+    }
+
+    public JTextField getNumeroParticipantes() {
+        return numeroParticipantes;
+    }
+
+    public void setNumeroParticipantes(JTextField numeroParticipantes) {
+        this.numeroParticipantes = numeroParticipantes;
+    }
+
+    public JComboBox<String> getOpcionesSala() {
+        return opcionesSala;
+    }
+
+    public void setOpcionesSala(JComboBox<String> opcionesSala) {
+        this.opcionesSala = opcionesSala;
+    }
+
+    public JCheckBox getCheckIsCumple() {
+        return checkIsCumple;
+    }
+
+    public void setCheckIsCumple(JCheckBox checkIsCumple) {
+        this.checkIsCumple = checkIsCumple;
+    }
+
+    public JButton getCancelarBut() {
+        return cancelarBut;
+    }
+
+    public void setCancelarBut(JButton cancelarBut) {
+        this.cancelarBut = cancelarBut;
+    }
+
+    public JButton getAceptarBut() {
+        return aceptarBut;
+    }
+
+    public void setAceptarBut(JButton aceptarBut) {
+        this.aceptarBut = aceptarBut;
+    }
+
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,40 +258,40 @@ public class GUIReserva extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GUIReserva().setVisible(true);
-//            }
-//        });
-//    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GUIReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GUIReserva().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
