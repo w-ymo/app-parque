@@ -16,6 +16,7 @@ public class Evento {
     private String nombre_evento;
     private LocalDate fecha_evento;
     private Integer numero_sala;
+    private Integer numero_participantes;
     private boolean es_cumple;
     private Integer id_menu;
 
@@ -49,6 +50,14 @@ public class Evento {
 
     public void setNumero_sala(Integer numero_sala) {
         this.numero_sala = numero_sala;
+    }
+
+    public Integer getNumero_participantes() {
+        return numero_participantes;
+    }
+
+    public void setNumero_participantes(Integer numero_participantes) {
+        this.numero_participantes = numero_participantes;
     }
 
     public boolean isEs_cumple() {

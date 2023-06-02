@@ -11,7 +11,6 @@ import com.gf.app.parque.view.GUIReserva;
 
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -58,7 +57,7 @@ public class ReservaController {
         if (vista.getNumeroParticipantes().getText().isEmpty()) {
             return false;
         } else {
-            int num = 0;
+            int num;
             try {
                 num = Integer.parseInt(vista.getNumeroParticipantes().getText());
                 if (num <= 0) {
@@ -81,12 +80,21 @@ public class ReservaController {
         boolean esCumple = vista.getCheckIsCumple().isSelected();
         evento.setNombre_evento(nombre);
         evento.setFecha_evento(LocalDate.ofEpochDay(fecha.getTime()));
-        //falta numero de participantes
+        evento.setNumero_participantes(numParticipantes);
         evento.setId_menu(idMenu);
         evento.setNumero_sala(numSala);
         evento.setEs_cumple(esCumple);
     }
 
+    private void setInfoMenu(){
+        
+    }
+    
+    private void setInfoSalas(){
+        
+        
+    }
+    
     private void addActionListenerButton() {
         vista.getCancelarBut().addActionListener(al);
         vista.getAceptarBut().addActionListener(al);
