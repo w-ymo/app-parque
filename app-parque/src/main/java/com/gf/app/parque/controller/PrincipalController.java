@@ -23,8 +23,7 @@ public class PrincipalController {
     private ActionListener al = (e) -> {
         if (((JButton) e.getSource()).equals(vista.getBotonReserva())) {
             GUIReserva gr = new GUIReserva();
-            //meter el controlador
-            gr.setVisible(true);
+            ReservaController rs = new ReservaController(vista, gr);
         }
     };
 

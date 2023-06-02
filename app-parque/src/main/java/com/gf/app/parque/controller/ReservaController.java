@@ -6,7 +6,7 @@ package com.gf.app.parque.controller;
 
 import com.gf.app.parque.entities.Evento;
 import com.gf.app.parque.entities.Menu;
-import com.gf.app.parque.entities.Reserva;
+import com.gf.app.parque.logic.EventoLogic;
 import com.gf.app.parque.logic.MenuLogic;
 import com.gf.app.parque.view.GUIPrincipal;
 import com.gf.app.parque.view.GUIReserva;
@@ -32,6 +32,7 @@ public class ReservaController {
     private final static String[] NOMBRES_SALAS = {"No seleccionado", "1. Sala dragones", "2. Sala jungla", "3. Sala deportes", "4. Sala fortnite"};
 
     private MenuLogic mLogic = new MenuLogic();
+    private EventoLogic eLogic = new EventoLogic();
 
     private Evento evento;
 
@@ -43,7 +44,13 @@ public class ReservaController {
         } else {
             if (validateInputs()) {
                 getContentInputFields();
-
+                try {
+                    if (!eLogic.insert(evento)) {
+                        JOptionPane.showMessageDialog(vista, "Error al insertar.");
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos.");
+                }
             }
         }
     };
@@ -122,6 +129,7 @@ public class ReservaController {
         noSeleccionado.setNombre_menu("No seleccionado");
         this.vista.getOpcionesMenu().addItem(noSeleccionado);
         try {
+            System.out.println(mLogic.select());
             for (Menu menu : mLogic.select()) {
                 this.vista.getOpcionesMenu().addItem(menu);
             }
