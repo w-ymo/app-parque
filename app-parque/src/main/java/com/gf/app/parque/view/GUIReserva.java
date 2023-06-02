@@ -4,6 +4,7 @@
  */
 package com.gf.app.parque.view;
 
+import com.gf.app.parque.entities.Menu;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -51,7 +52,7 @@ public class GUIReserva extends javax.swing.JFrame {
     private JDatePickerImpl panelPicker = new JDatePickerImpl(panelDate, new DateComponentFormatter());
     //mas movidas
     private JTextField numeroParticipantes;
-    private JComboBox<String> opcionesMenu = new JComboBox<>();
+    private JComboBox<Menu> opcionesMenu = new JComboBox<>();
     private JComboBox<String> opcionesSala = new JComboBox<>();
     private JCheckBox checkIsCumple;
     
@@ -190,11 +191,11 @@ public class GUIReserva extends javax.swing.JFrame {
         this.modelo = modelo;
     }
 
-    public JComboBox<String> getOpcionesMenu() {
+    public JComboBox<Menu> getOpcionesMenu() {
         return opcionesMenu;
     }
 
-    public void setOpcionesMenu(JComboBox<String> opcionesMenu) {
+    public void setOpcionesMenu(JComboBox<Menu> opcionesMenu) {
         this.opcionesMenu = opcionesMenu;
     }
 

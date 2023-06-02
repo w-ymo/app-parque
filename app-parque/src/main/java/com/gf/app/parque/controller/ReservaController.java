@@ -5,15 +5,19 @@
 package com.gf.app.parque.controller;
 
 import com.gf.app.parque.entities.Evento;
+import com.gf.app.parque.entities.Menu;
 import com.gf.app.parque.entities.Reserva;
+import com.gf.app.parque.logic.MenuLogic;
 import com.gf.app.parque.view.GUIPrincipal;
 import com.gf.app.parque.view.GUIReserva;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +29,10 @@ public class ReservaController {
 
     private GUIReserva vista;
 
+    private final static String[] NOMBRES_SALAS = {"No seleccionado", "1. Sala dragones", "2. Sala jungla", "3. Sala deportes", "4. Sala fortnite"};
+
+    private MenuLogic mLogic = new MenuLogic();
+
     private Evento evento;
 
     private ActionListener al = (e) -> {
@@ -35,6 +43,7 @@ public class ReservaController {
         } else {
             if (validateInputs()) {
                 getContentInputFields();
+
             }
         }
     };
@@ -43,6 +52,8 @@ public class ReservaController {
         this.vistaPadre = vistaPadre;
         this.vista = vista;
         addActionListenerButton();
+        setInfoMenu();
+        setInfoSalas();
         launchView();
     }
 
@@ -75,9 +86,10 @@ public class ReservaController {
         String nombre = vista.getNombreEvento().getText();
         Date fecha = vista.getModelo().getValue();
         int numParticipantes = Integer.parseInt(vista.getNumeroParticipantes().getText());
-        int idMenu = 0;
-        int numSala = 0;
+        Integer idMenu = getSelectedMenu();
+        Integer numSala = getSelectedSala();
         boolean esCumple = vista.getCheckIsCumple().isSelected();
+        //evento
         evento.setNombre_evento(nombre);
         evento.setFecha_evento(LocalDate.ofEpochDay(fecha.getTime()));
         evento.setNumero_participantes(numParticipantes);
@@ -86,15 +98,44 @@ public class ReservaController {
         evento.setEs_cumple(esCumple);
     }
 
-    private void setInfoMenu(){
-        
+    private Integer getSelectedMenu() {
+        Integer numero = null;
+        if (vista.getOpcionesMenu().getSelectedIndex() != 0) {
+            Menu menu = (Menu) vista.getOpcionesMenu().getSelectedItem();
+            numero = menu.getId_menu();
+        }
+        return numero;
     }
-    
-    private void setInfoSalas(){
-        
-        
+
+    private Integer getSelectedSala() {
+        Integer numero = null;
+        if (vista.getOpcionesMenu().getSelectedIndex() != 0) {
+            String selected = (String) vista.getOpcionesSala().getSelectedItem();
+            String[] partes = selected.split("\\.");
+            numero = Integer.parseInt(partes[0]);
+        }
+        return numero;
     }
-    
+
+    private void setInfoMenu() {
+        Menu noSeleccionado = new Menu();
+        noSeleccionado.setNombre_menu("No seleccionado");
+        this.vista.getOpcionesMenu().addItem(noSeleccionado);
+        try {
+            for (Menu menu : mLogic.select()) {
+                this.vista.getOpcionesMenu().addItem(menu);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos");
+        }
+    }
+
+    private void setInfoSalas() {
+        for (String string : NOMBRES_SALAS) {
+            this.vista.getOpcionesSala().addItem(string);
+        }
+    }
+
     private void addActionListenerButton() {
         vista.getCancelarBut().addActionListener(al);
         vista.getAceptarBut().addActionListener(al);

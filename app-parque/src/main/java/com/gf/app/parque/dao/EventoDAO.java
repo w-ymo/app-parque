@@ -19,7 +19,7 @@ import java.util.List;
 public class EventoDAO {
 
     public int insert(Evento e) throws SQLException {
-        String sql = "INSERT INTO sintomas (nombre_evento, fecha_evento, numero_sala, es_cumple, id_menu) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_sala, es_cumple, id_menu) VALUES (?,?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, e.getNombre_evento());
