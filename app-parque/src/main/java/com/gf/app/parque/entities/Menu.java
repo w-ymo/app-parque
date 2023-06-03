@@ -40,7 +40,7 @@ public class Menu {
 
     @Override
     public String toString() {
-        return nombre_menu + ": " + precio_menu + "€";
+        return nombre_menu;
     }
     
     

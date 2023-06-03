@@ -24,7 +24,7 @@ public class EventoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, e.getNombre_evento());
             ps.setDate(2, Date.valueOf(e.getFecha_evento()));
-            ps.setInt(3, e.getNumero_sala());
+//            ps.setInt(3, e.getNumero_sala());
             ps.setBoolean(4, e.isEs_cumple());
             ps.setInt(5, e.getId_menu());
             return ps.executeUpdate();

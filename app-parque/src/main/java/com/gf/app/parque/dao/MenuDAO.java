@@ -25,11 +25,11 @@ public class MenuDAO {
             String sql = "SELECT * FROM menu";
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
-            if (rs.next()) {
+            while (rs.next()) {
                 Menu menu = new Menu();
-                rs.getInt("id_menu");
-                rs.getString("nombre_menu");
-                rs.getDouble("precio_menu");
+                menu.setId_menu(rs.getInt("id_menu"));
+                menu.setNombre_menu(rs.getString("nombre_menu"));
+                menu.setPrecio_menu(rs.getDouble("precio_menu"));
                 fullList.add(menu);
             }
         }

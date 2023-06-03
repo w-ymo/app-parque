@@ -14,6 +14,7 @@ import com.gf.app.parque.view.GUIReserva;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -98,7 +99,7 @@ public class ReservaController {
         boolean esCumple = vista.getCheckIsCumple().isSelected();
         //evento
         evento.setNombre_evento(nombre);
-        evento.setFecha_evento(LocalDate.ofEpochDay(fecha.getTime()));
+        evento.setFecha_evento(fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         evento.setNumero_participantes(numParticipantes);
         evento.setId_menu(idMenu);
         evento.setNumero_sala(numSala);
@@ -116,7 +117,7 @@ public class ReservaController {
 
     private Integer getSelectedSala() {
         Integer numero = null;
-        if (vista.getOpcionesMenu().getSelectedIndex() != 0) {
+        if (vista.getOpcionesMenu().getSelectedIndex() > 1) {
             String selected = (String) vista.getOpcionesSala().getSelectedItem();
             String[] partes = selected.split("\\.");
             numero = Integer.parseInt(partes[0]);
@@ -129,7 +130,6 @@ public class ReservaController {
         noSeleccionado.setNombre_menu("No seleccionado");
         this.vista.getOpcionesMenu().addItem(noSeleccionado);
         try {
-            System.out.println(mLogic.select());
             for (Menu menu : mLogic.select()) {
                 this.vista.getOpcionesMenu().addItem(menu);
             }
