@@ -26,7 +26,7 @@ public class InicioController {
     private ActionListener al = (e) -> {
         JButton opt = (JButton) (e.getSource());
         if (opt.equals(vista.getOptButtons().get(0))) {
-            vista.setVisible(false);
+            vista.dispose();
             LoginController lc = new LoginController(new GUILogin(), vista);
         } else if (opt.equals(vista.getOptButtons().get(1))) {
             vista.setVisible(false);
