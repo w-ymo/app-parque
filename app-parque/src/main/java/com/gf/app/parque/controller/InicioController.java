@@ -22,6 +22,7 @@ public class InicioController {
 
     public InicioController(GUIInicio vista) {
         this.vista = vista;
+        tryConn();
         setActionListener();
     }
 
@@ -46,13 +47,12 @@ public class InicioController {
 
     private void tryConn() {
         if (!ConexionBD.isValid()) {
-            JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showConfirmDialog(vista, "Error al acceder a la base de datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }
 
     public void launch() {
-        tryConn();
         vista.setVisible(true);
     }
 

@@ -22,9 +22,11 @@ import java.util.List;
 public class MenuDAO {
 
     /**
-     * selectAll: 
+     * selectAll: selecciona todos los menus de la base de datos.
      *
-     * @return
+     * @see Menu
+     * 
+     * @return devuelve una lista de menus
      * @throws SQLException si no consigue acceder a la base de datos (error
      * sintactico o base de datos no encontrada)
      */

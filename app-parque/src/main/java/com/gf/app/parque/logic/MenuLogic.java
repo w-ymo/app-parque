@@ -27,9 +27,12 @@ public class MenuLogic {
      */
     public MenuLogic() {
     }
-    
+
     /**
      * select: permite seleccionar todos los menus de la base de datos.
+     *
+     * @see MenuDAO
+     * @see Menu
      *
      * @return una lista de menus
      * @throws SQLException si no consigue acceder a la base de datos (error
