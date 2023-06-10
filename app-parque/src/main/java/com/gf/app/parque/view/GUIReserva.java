@@ -178,6 +178,14 @@ public class GUIReserva extends javax.swing.JFrame {
         this.modelo = modelo;
     }
 
+    public JDatePanelImpl getPanelDate() {
+        return panelDate;
+    }
+
+    public void setPanelDate(JDatePanelImpl panelDate) {
+        this.panelDate = panelDate;
+    }
+    
     public JComboBox<Menu> getOpcionesMenu() {
         return opcionesMenu;
     }

@@ -31,4 +31,16 @@ public class Validaciones {
         return LETRAS_DNI.charAt(resto) == letra;
     }
 
+    public static boolean validateName(String nombre) {
+        if (nombre.isEmpty() || nombre.isBlank()) {
+            return false;
+        }
+        for (int i = 0; i < nombre.length(); i++) {
+            if (!Character.isAlphabetic(nombre.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

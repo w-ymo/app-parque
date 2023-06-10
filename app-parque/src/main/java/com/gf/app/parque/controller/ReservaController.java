@@ -8,6 +8,8 @@ import com.gf.app.parque.entities.Evento;
 import com.gf.app.parque.entities.Menu;
 import com.gf.app.parque.logic.EventoLogic;
 import com.gf.app.parque.logic.MenuLogic;
+import com.gf.app.parque.resources.Colors;
+import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIPrincipal;
 import com.gf.app.parque.view.GUIReserva;
 import java.awt.event.ActionListener;
@@ -79,7 +81,7 @@ public class ReservaController {
      * @return true -> si es valido, false -> si no lo es
      */
     private boolean validateInputs() {
-        if (vista.getNombreEvento().getText().isEmpty()) {
+        if (Validaciones.validateName(vista.getNombreEvento().getText())) {
             errorMsg = 1;
             return false;
         }
@@ -173,21 +175,27 @@ public class ReservaController {
         switch (errorMsg) {
             case 1 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Nombre del evento vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getNombreEvento().setBackground(Colors.RED_BACKGROUND);
             }
             case 2 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Fecha no introducida.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getPanelDate().setBackground(Colors.RED_BACKGROUND);
             }
             case 3 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Fecha anterior al día de hoy.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getPanelDate().setBackground(Colors.RED_BACKGROUND);
             }
             case 4 -> {
                 JOptionPane.showMessageDialog(vista, "Error. No has introducido número de participantes.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getNumeroParticipantes().setBackground(Colors.RED_BACKGROUND);
             }
             case 5 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Has introducido un número negativo de participantes.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getNumeroParticipantes().setBackground(Colors.RED_BACKGROUND);
             }
             case 6 -> {
                 JOptionPane.showMessageDialog(vista, "Error. No has introducido un número válido de participantes.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getNumeroParticipantes().setBackground(Colors.RED_BACKGROUND);
             }
             default -> {
                 System.err.println("No hay ningun error.");
