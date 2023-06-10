@@ -12,11 +12,31 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * EventoDAO: es la clase de acceso a datos de la base de datos, en concreto la
+ * tabla 'evento'.
  *
  * @author priparno
  */
 public class EventoDAO {
 
+    /**
+     * DEFAULT CONSTRUCTOR
+     */
+    public EventoDAO() {
+    }
+
+    /**
+     * insert: inserta un evento con todos los campos. No se inserta el
+     * id_evento porque es autoincrement.
+     *
+     * @see Evento
+     *
+     * @param e el evento a insertar
+     * @return un entero. <ul><li>1: ha conseguido insertar</li><li>0: no lo ha
+     * conseguido</li></ul>
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
+     */
     public int insert(Evento e) throws SQLException {
         String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, numero_sala, es_cumple, id_menu) VALUES (?,?,?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
@@ -31,6 +51,16 @@ public class EventoDAO {
         }
     }
 
+    /**
+     * insertWOIdMenu: inserta un evento sin menu. No se inserta el id_evento
+     * porque es autoincrement.
+     *
+     * @param e el evento a insertar
+     * @return un entero. <ul><li>1: ha conseguido insertar</li><li>0: no lo ha
+     * conseguido</li></ul>
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
+     */
     public int insertWOIdMenu(Evento e) throws SQLException {
         String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, numero_sala, es_cumple) VALUES (?,?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
@@ -44,6 +74,16 @@ public class EventoDAO {
         }
     }
 
+    /**
+     * insertWONumSala: inserta un evento sin numero de sala. No se inserta el
+     * id_evento porque es autoincrement.
+     *
+     * @param e el evento a insertar
+     * @return un entero. <ul><li>1: ha conseguido insertar</li><li>0: no lo ha
+     * conseguido</li></ul>
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
+     */
     public int insertWONumSala(Evento e) throws SQLException {
         String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, es_cumple, id_menu) VALUES (?,?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
@@ -57,6 +97,16 @@ public class EventoDAO {
         }
     }
 
+    /**
+     * insertWONumSala: inserta un evento sin numero de sala ni menú. No se
+     * inserta el id_evento porque es autoincrement.
+     *
+     * @param e el evento a insertar
+     * @return un entero. <ul><li>1: ha conseguido insertar</li><li>0: no lo ha
+     * conseguido</li></ul>
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
+     */
     public int insertWONumSalaIdMenu(Evento e) throws SQLException {
         String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, es_cumple) VALUES (?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {

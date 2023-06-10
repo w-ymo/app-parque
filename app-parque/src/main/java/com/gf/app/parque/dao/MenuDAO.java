@@ -14,11 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * MenuDAO: es la clase de acceso a datos de la base de datos, en concreto la
+ * tabla 'menu'.
  *
  * @author priparno
  */
 public class MenuDAO {
 
+    /**
+     * selectAll: 
+     *
+     * @return
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
+     */
     public List<Menu> selectAll() throws SQLException {
         List<Menu> fullList = new ArrayList<>();
         try ( Connection con = ConexionBD.getConnection()) {
