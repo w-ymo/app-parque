@@ -12,11 +12,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * AdministradorDAO: es la clase de acceso a datos de la base de datos, en
+ * concreto la tabla 'administrador'.
  *
- * @author noelp
+ * @author priparno
  */
 public class AdministradorDAO {
 
+    /**
+     * 
+     */
+    public AdministradorDAO() {
+    }
+
+    /**
+     * 
+     * @param dni
+     * @return
+     * @throws SQLException 
+     */
     public Administrador selectDNI(String dni) throws SQLException {
         Administrador admin = null;
         try ( Connection con = ConexionBD.getConnection()) {
@@ -38,7 +52,13 @@ public class AdministradorDAO {
         return admin;
     }
 
-    public int updateId (Administrador a) throws SQLException {
+    /**
+     * 
+     * @param a
+     * @return
+     * @throws SQLException 
+     */
+    public int updateId(Administrador a) throws SQLException {
         String sql = "UPDATE administrador SET nombre_admin=?,apellidos_admin=?,telefono_admin=?,correo_admin=?,puesto_admin=?,password_admin=? WHERE dni_admin=?";
         try ( Connection con = ConexionBD.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -52,5 +72,5 @@ public class AdministradorDAO {
             return ps.executeUpdate();
         }
     }
-    
+
 }

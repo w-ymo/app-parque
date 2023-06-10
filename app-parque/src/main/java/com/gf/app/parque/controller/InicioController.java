@@ -4,11 +4,13 @@
  */
 package com.gf.app.parque.controller;
 
+import com.gf.app.parque.resources.ConexionBD;
 import com.gf.app.parque.view.GUIInicio;
 import com.gf.app.parque.view.GUILogin;
 import com.gf.app.parque.view.GUIRegistro;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +22,7 @@ public class InicioController {
 
     public InicioController(GUIInicio vista) {
         this.vista = vista;
+        tryConn();
         setActionListener();
     }
 
@@ -39,6 +42,13 @@ public class InicioController {
     private void setActionListener() {
         for (JButton opt : vista.getOptButtons()) {
             opt.addActionListener(al);
+        }
+    }
+
+    private void tryConn() {
+        if (!ConexionBD.isValid()) {
+            JOptionPane.showConfirmDialog(vista, "Error al acceder a la base de datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
     }
 
