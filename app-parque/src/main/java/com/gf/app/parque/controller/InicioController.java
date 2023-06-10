@@ -10,7 +10,6 @@ import com.gf.app.parque.view.GUILogin;
 import com.gf.app.parque.view.GUIRegistro;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,7 +46,6 @@ public class InicioController {
 
     private void tryConn() {
         if (!ConexionBD.isValid()) {
-            JOptionPane.showConfirmDialog(vista, "Error al acceder a la base de datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }
