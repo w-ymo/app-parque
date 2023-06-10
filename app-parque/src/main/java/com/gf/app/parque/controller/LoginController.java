@@ -6,12 +6,15 @@ package com.gf.app.parque.controller;
 
 import com.gf.app.parque.entities.Administrador;
 import com.gf.app.parque.logic.AdministradorLogic;
+import com.gf.app.parque.resources.Colors;
 import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIInicio;
 import com.gf.app.parque.view.GUILogin;
 import com.gf.app.parque.view.GUIPrincipal;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -30,6 +33,8 @@ public class LoginController {
 
     private String dni;
     private String password;
+
+    private int errorMsg;
 
     private ActionListener al = (e) -> {
         JButton but = (JButton) e.getSource();
@@ -50,16 +55,32 @@ public class LoginController {
                     GUIPrincipal principal = new GUIPrincipal();
                     PrincipalController pc = new PrincipalController(vistaPadre, principal);
                 } else {
-                    JOptionPane.showMessageDialog(vista, "Pues te has confundido");
-                    vista.getTextFdni().setBackground(Color.red);
-                    vista.getTextFPassword().setBackground(Color.red);
+                    showMessage();
                 }
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos.");
             }
         }
+    };
 
+    private KeyAdapter ka1 = new KeyAdapter() {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                vista.getTextFPassword().requestFocus();
+            }
+        }
+
+    };
+
+    private KeyAdapter ka2 = new KeyAdapter() {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                vista.getAceptarBut().doClick();
+            }
+        }
     };
 
     private boolean comprobarDatos() throws SQLException {
@@ -68,8 +89,14 @@ public class LoginController {
             if (admin != null) {
                 if (admin.getPassword_admin().equals(this.password)) {
                     return true;
+                } else {
+                    errorMsg = 3;
                 }
+            } else {
+                errorMsg = 2;
             }
+        } else {
+            errorMsg = 1;
         }
         return false;
     }
@@ -85,6 +112,33 @@ public class LoginController {
     private void addActionListener() {
         vista.getAceptarBut().addActionListener(al);
         vista.getCancelarBut().addActionListener(al);
+        vista.getTextFdni().addKeyListener(ka1);
+        vista.getTextFPassword().addKeyListener(ka2);
+    }
+
+    private void showMessage() {
+        setWhite();
+        switch (errorMsg) {
+            case 1 -> {
+                JOptionPane.showMessageDialog(vista, "Error. Formato de dni inválido. Debe tener 8 números y 1 letra.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getTextFdni().setBackground(Colors.RED_BACKGROUND);
+            }
+            case 2 -> {
+                JOptionPane.showMessageDialog(vista, "Error. No se ha encontrado el usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getTextFdni().setBackground(Colors.RED_BACKGROUND);
+            }
+            case 3 -> {
+                JOptionPane.showMessageDialog(vista, "Error. Acceso denegado.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                vista.getTextFPassword().setBackground(Colors.RED_BACKGROUND);
+            }
+            default ->
+                throw new AssertionError();
+        }
+    }
+
+    private void setWhite() {
+        vista.getTextFdni().setBackground(Color.white);
+        vista.getTextFPassword().setBackground(Color.white);
     }
 
     private void launchView() {

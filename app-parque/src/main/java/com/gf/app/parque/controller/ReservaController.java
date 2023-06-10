@@ -10,17 +10,15 @@ import com.gf.app.parque.logic.EventoLogic;
 import com.gf.app.parque.logic.MenuLogic;
 import com.gf.app.parque.view.GUIPrincipal;
 import com.gf.app.parque.view.GUIReserva;
-
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
+ * ReservaController:
  *
  * @author noelp
  */
@@ -37,6 +35,8 @@ public class ReservaController {
 
     private Evento evento;
 
+    private int errorMsg;
+
     private ActionListener al = (e) -> {
         JButton but = (JButton) e.getSource();
         if (but.equals(vista.getCancelarBut())) {
@@ -47,11 +47,16 @@ public class ReservaController {
                 getContentInputFields();
                 try {
                     if (!eLogic.insert(evento)) {
-                        JOptionPane.showMessageDialog(vista, "Error al insertar.");
+                        JOptionPane.showMessageDialog(vista, "Error al insertar.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(vista, "Insertado.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos.");
+                    JOptionPane.showMessageDialog(vista, "Error de sintaxis.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
                 }
+            } else {
+                showMessage();
             }
         }
     };
@@ -65,24 +70,40 @@ public class ReservaController {
         launchView();
     }
 
+    /**
+     * validateInputs: es un metodo que valida los inputs del usuario en la
+     * ventana de reserva.
+     *
+     * @see GUIReserva
+     *
+     * @return true -> si es valido, false -> si no lo es
+     */
     private boolean validateInputs() {
         if (vista.getNombreEvento().getText().isEmpty()) {
+            errorMsg = 1;
             return false;
         }
-        if (vista.getModelo().getValue() == null || vista.getModelo().getValue().before(new Date(LocalDate.now().toEpochDay()))) {
+        if (vista.getModelo().getValue() == null) {
+            errorMsg = 2;
             return false;
         }
-
+        if (vista.getModelo().getValue().before(new Date(System.currentTimeMillis()))) {
+            errorMsg = 3;
+            return false;
+        }
         if (vista.getNumeroParticipantes().getText().isEmpty()) {
+            errorMsg = 4;
             return false;
         } else {
             int num;
             try {
                 num = Integer.parseInt(vista.getNumeroParticipantes().getText());
                 if (num <= 0) {
+                    errorMsg = 5;
                     return false;
                 }
             } catch (NumberFormatException ex) {
+                errorMsg = 6;
                 return false;
             }
         }
@@ -97,7 +118,6 @@ public class ReservaController {
         Integer idMenu = getSelectedMenu();
         Integer numSala = getSelectedSala();
         boolean esCumple = vista.getCheckIsCumple().isSelected();
-        //evento
         evento.setNombre_evento(nombre);
         evento.setFecha_evento(fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         evento.setNumero_participantes(numParticipantes);
@@ -120,7 +140,7 @@ public class ReservaController {
         if (vista.getOpcionesMenu().getSelectedIndex() > 1) {
             String selected = (String) vista.getOpcionesSala().getSelectedItem();
             String[] partes = selected.split("\\.");
-            numero = Integer.parseInt(partes[0]);
+            numero = Integer.valueOf(partes[0]);
         }
         return numero;
     }
@@ -134,7 +154,7 @@ public class ReservaController {
                 this.vista.getOpcionesMenu().addItem(menu);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(vista, "Error al acceder a la base de datos");
+            JOptionPane.showMessageDialog(vista, "Error de sintaxis", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -147,6 +167,32 @@ public class ReservaController {
     private void addActionListenerButton() {
         vista.getCancelarBut().addActionListener(al);
         vista.getAceptarBut().addActionListener(al);
+    }
+
+    private void showMessage() {
+        switch (errorMsg) {
+            case 1 -> {
+                JOptionPane.showMessageDialog(vista, "Error. Nombre del evento vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            case 2 -> {
+                JOptionPane.showMessageDialog(vista, "Error. Fecha no introducida.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            case 3 -> {
+                JOptionPane.showMessageDialog(vista, "Error. Fecha anterior al día de hoy.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            case 4 -> {
+                JOptionPane.showMessageDialog(vista, "Error. No has introducido número de participantes.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            case 5 -> {
+                JOptionPane.showMessageDialog(vista, "Error. Has introducido un número negativo de participantes.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            case 6 -> {
+                JOptionPane.showMessageDialog(vista, "Error. No has introducido un número válido de participantes.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            default -> {
+                System.err.println("No hay ningun error.");
+            }
+        }
     }
 
     private void launchView() {
