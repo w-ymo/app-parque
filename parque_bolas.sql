@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2023 a las 12:58:43
+-- Tiempo de generación: 10-06-2023 a las 17:46:29
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -38,6 +38,13 @@ CREATE TABLE `administrador` (
   `password_admin` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`dni_admin`, `nombre_admin`, `apellidos_admin`, `telefono_admin`, `correo_admin`, `puesto_admin`, `username_admin`, `password_admin`) VALUES
+('12427920P', 'Noel', 'Prieto Pardo', '655655655', 'noel.prieto.uva@gmail.com', 'MONITOR', '', 'macarrones');
+
 -- --------------------------------------------------------
 
 --
@@ -48,9 +55,10 @@ CREATE TABLE `evento` (
   `id_evento` int(11) NOT NULL,
   `nombre_evento` varchar(100) NOT NULL,
   `fecha_evento` date NOT NULL,
-  `numero_sala` int(11) NOT NULL,
+  `numero_integrantes` int(11) NOT NULL,
+  `numero_sala` int(11) DEFAULT NULL,
   `es_cumple` tinyint(1) NOT NULL,
-  `id_menu` int(11) NOT NULL
+  `id_menu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -64,6 +72,15 @@ CREATE TABLE `menu` (
   `nombre_menu` varchar(20) NOT NULL,
   `precio_menu` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `menu`
+--
+
+INSERT INTO `menu` (`id_menu`, `nombre_menu`, `precio_menu`) VALUES
+(1, 'Menu Verde', 7.5),
+(2, 'Menu Amarillo', 9.75),
+(3, 'Menu Rojo', 12.25);
 
 --
 -- Índices para tablas volcadas
@@ -80,7 +97,7 @@ ALTER TABLE `administrador`
 --
 ALTER TABLE `evento`
   ADD PRIMARY KEY (`id_evento`),
-  ADD UNIQUE KEY `id_menu` (`id_menu`);
+  ADD KEY `id_menu` (`id_menu`);
 
 --
 -- Indices de la tabla `menu`
@@ -96,13 +113,23 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `evento`
+--
+ALTER TABLE `evento`
+  ADD CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
