@@ -150,7 +150,7 @@ public class RegistroController {
                 vista.getTextFdni().setBackground(Colors.RED_BACKGROUND);
             }
             case 3 -> {
-                JOptionPane.showMessageDialog(vista, "Error. No se ha introducido una contraseña.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Error. El administrador ya tiene una contraseña asociada.", "ERROR", JOptionPane.ERROR_MESSAGE);
                 vista.getTextFPassword().setBackground(Colors.RED_BACKGROUND);
             }
             case 4 -> {
@@ -160,7 +160,7 @@ public class RegistroController {
             }
             case 5 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Las contraseñas no cumplen el formato de seguridad (8 caracteres).", "ERROR", JOptionPane.ERROR_MESSAGE);
-               vista.getTextFPassword().setBackground(Colors.RED_BACKGROUND);
+                vista.getTextFPassword().setBackground(Colors.RED_BACKGROUND);
                 vista.getConfirmPassword().setBackground(Colors.RED_BACKGROUND);
             }
             default ->

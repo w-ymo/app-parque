@@ -22,6 +22,12 @@ import java.util.List;
 public class MenuDAO {
 
     /**
+     * DEFAULT CONSTRUCTOR
+     */
+    public MenuDAO() {
+    }
+
+    /**
      * selectAll: selecciona todos los menus de la base de datos.
      *
      * @see Menu

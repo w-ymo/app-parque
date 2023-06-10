@@ -20,16 +20,21 @@ import java.sql.SQLException;
 public class AdministradorDAO {
 
     /**
-     * 
+     * DEFAULT CONSTRUCTOR
      */
     public AdministradorDAO() {
     }
 
     /**
-     * 
-     * @param dni
-     * @return
-     * @throws SQLException 
+     * selectDNI: devuelve el administrador de la base de datos dependiendo del
+     * pasado por parametro. Busqueda por clave primaria.
+     *
+     * @see Administrador
+     *
+     * @param dni una cadena que representa un dni
+     * @return un administrador
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
      */
     public Administrador selectDNI(String dni) throws SQLException {
         Administrador admin = null;
@@ -53,10 +58,15 @@ public class AdministradorDAO {
     }
 
     /**
-     * 
-     * @param a
-     * @return
-     * @throws SQLException 
+     * updateId: actualiza el administrador pasado por parametro. Coge el dni
+     * del pasado por parametro y actualiza con el resto de valores.
+     *
+     * @see Administrador
+     *
+     * @param a el administrador pasado por parametro.
+     * @return un entero. <ul><li>1: ha conseguido insertar</li><li>0: no lo ha
+     * conseguido</li></ul>
+     * @throws SQLException
      */
     public int updateId(Administrador a) throws SQLException {
         String sql = "UPDATE administrador SET nombre_admin=?,apellidos_admin=?,telefono_admin=?,correo_admin=?,puesto_admin=?,password_admin=? WHERE dni_admin=?";

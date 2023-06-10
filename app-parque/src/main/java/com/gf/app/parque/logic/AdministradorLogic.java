@@ -9,25 +9,43 @@ import com.gf.app.parque.entities.Administrador;
 import java.sql.SQLException;
 
 /**
+ * AdministradorLogic: clase que permite aplicar la logica de negocio y acceder
+ * a la base de datos, en concreto la tabla 'administrador'.
  *
  * @author priparno
  */
 public class AdministradorLogic {
 
+    /**
+     * adminDAO: objeto de acceso a datos de administrador.
+     */
     private AdministradorDAO adminDAO = new AdministradorDAO();
 
-    //meter de actualizar las movidas
+    /**
+     * update:
+     *
+     * @param dni
+     * @param newPass
+     * @return
+     * @throws SQLException
+     */
     public boolean update(String dni, String newPass) throws SQLException {
         Administrador a = adminDAO.selectDNI(dni);
-        if (newPass.length() < 8){
+        if (newPass.length() < 8) {
             return false;
         }
-        a.setPassword_admin(newPass); 
-        return adminDAO.updateId(a)>0; //lanza false si no se actualiza
+        a.setPassword_admin(newPass);
+        return adminDAO.updateId(a) > 0; //lanza false si no se actualiza
     }
-    
-    
-    public Administrador selectDni (String dni) throws SQLException {
+
+    /**
+     * selectDni:
+     *
+     * @param dni
+     * @return
+     * @throws SQLException
+     */
+    public Administrador selectDni(String dni) throws SQLException {
         return adminDAO.selectDNI(dni);
     }
 
