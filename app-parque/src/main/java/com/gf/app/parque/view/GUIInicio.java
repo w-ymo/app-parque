@@ -17,18 +17,35 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
+ * GUIInicio: es la ventana principal (da la opcion al usuario de registrarse o
+ * acceder).
  *
  * @author noelp
  */
 public class GUIInicio extends javax.swing.JFrame {
 
+    /**
+     * tamPantalla: el tamanio de la pantalla.
+     */
     private Dimension tamPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 
+    /**
+     * panelIcon: el panel donde se situa el icono de la empresa.
+     */
     private JPanel panelIcon;
+    /**
+     * panelOpciones: el panel donde se encuentran los botones de opciones.
+     */
     private JPanel panelOpciones;
 
+    /**
+     * optText: el texto de los botones.
+     */
     public static final String[] optText = {"Entrar", "Registrarse"};
 
+    /**
+     * optButtons: una lista que contiene los botones.
+     */
     private List<JButton> optButtons = new ArrayList<>();
 
     /**
@@ -39,6 +56,9 @@ public class GUIInicio extends javax.swing.JFrame {
         setFrame();
     }
 
+    /**
+     * setFrame: es el metodo principal que coloca los elementos en la ventana.
+     */
     private void setFrame() {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setSize(tamPantalla);
@@ -48,6 +68,9 @@ public class GUIInicio extends javax.swing.JFrame {
         setOptPanel();
     }
 
+    /**
+     * setImage: coloca el icono en la ventana.
+     */
     private void setImage() {
         panelIcon = new JPanel(new BorderLayout());
         this.getContentPane().add(panelIcon);
@@ -56,6 +79,9 @@ public class GUIInicio extends javax.swing.JFrame {
         image.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
+    /**
+     * setOptPanel: coloca los botones en la pantalla.
+     */
     private void setOptPanel() {
         panelOpciones = new JPanel(new GridLayout(1, 2, 5, 0));
         panelOpciones.setPreferredSize(new Dimension((int) tamPantalla.getWidth(), (int) (tamPantalla.getHeight() * 0.2)));
@@ -67,14 +93,15 @@ public class GUIInicio extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * getOptButtons: devuelve una lista de botones. Son las opciones de acceso.
+     *
+     * @return una lista de botones
+     */
     public List<JButton> getOptButtons() {
         return optButtons;
     }
 
-    public void setOptButtons(List<JButton> optButtons) {
-        this.optButtons = optButtons;
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,41 +126,6 @@ public class GUIInicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GUIInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GUIInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GUIInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GUIInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GUIInicio().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
