@@ -23,15 +23,36 @@ import javax.swing.SwingConstants;
  */
 public class GUILogin extends javax.swing.JFrame {
 
+    /**
+     * tamPantalla: el tamanio de la pantalla.
+     */
     private Dimension tamPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 
+    /**
+     * panelBotones: es el panel donde se colocan los botones.
+     */
     private JPanel panelBotones;
+    /**
+     * panelTextFields: es el panel donde se colocan las cajas de texto.
+     */
     private JPanel panelTextFields;
 
+    /**
+     * textFdni: es la caja de texto donde introducir el dni.
+     */
     private JTextField textFdni;
+    /**
+     * textFPassword: es la caja de texto donde introducir la contrasenia.
+     */
     private JPasswordField textFPassword;
 
+    /**
+     * cancelarBut: es el boton de cancelar.
+     */
     private JButton cancelarBut;
+    /**
+     * aceptarBut: es el boton de aceptar.
+     */
     private JButton aceptarBut;
 
     /**
@@ -42,6 +63,10 @@ public class GUILogin extends javax.swing.JFrame {
         setFrame();
     }
 
+    /**
+     * setFrame: es el metodo principal que ajusta y coloca componentes por
+     * pantalla
+     */
     private void setFrame() {
         this.setTitle("Acceder");
         this.setSize(tamPantalla);
@@ -51,6 +76,9 @@ public class GUILogin extends javax.swing.JFrame {
         setButtons();
     }
 
+    /**
+     * setTextFields: coloca y crea las cajas de texto en la ventana.
+     */
     private void setTextFields() {
         //va un poco mejor pero no me acaba de convencer
         textFdni = new JTextField();
@@ -76,6 +104,9 @@ public class GUILogin extends javax.swing.JFrame {
         this.getContentPane().add(panelTextFields);
     }
 
+    /**
+     * setButtons: coloca y crea los botones en la ventana.
+     */
     private void setButtons() {
         cancelarBut = new JButton("Cancelar");
         aceptarBut = new JButton("Aceptar");
@@ -85,36 +116,49 @@ public class GUILogin extends javax.swing.JFrame {
         panelBotones.add(cancelarBut);
     }
 
+    /**
+     * getTextFdni: devuelve un JTextField que es donde se introducira el dni
+     *
+     * @see JTextField
+     *
+     * @return un JTextField
+     */
     public JTextField getTextFdni() {
         return textFdni;
     }
 
-    public void setTextFdni(JTextField textFdni) {
-        this.textFdni = textFdni;
-    }
-
+    /**
+     * getTextFPassword: devuelve un JPasswordField que es donde se introducira
+     * la contrasenia.
+     *
+     * @see JPasswordField
+     *
+     * @return un JPasswordField
+     */
     public JPasswordField getTextFPassword() {
         return textFPassword;
     }
 
-    public void setTextFPassword(JPasswordField textFPassword) {
-        this.textFPassword = textFPassword;
-    }
-
+    /**
+     * getCancelarBut: devuelve un JButton que sera el boton de cancelar.
+     *
+     * @see JButton
+     *
+     * @return un JButton
+     */
     public JButton getCancelarBut() {
         return cancelarBut;
     }
 
-    public void setCancelarBut(JButton cancelarBut) {
-        this.cancelarBut = cancelarBut;
-    }
-
+    /**
+     * getAceptarBut: devuelve un JButton que sera el boton de aceptar.
+     *
+     * @see JButton
+     *
+     * @return un JButton
+     */
     public JButton getAceptarBut() {
         return aceptarBut;
-    }
-
-    public void setAceptarBut(JButton aceptarBut) {
-        this.aceptarBut = aceptarBut;
     }
 
     /**

@@ -7,9 +7,15 @@ package com.gf.app.parque.resources;
 import java.awt.Color;
 
 /**
+ * Colors: esta interfaz contiene colores que se utilizan a lo largo de la
+ * aplicacion.
  *
  * @author noelp
  */
 public interface Colors {
+
+    /**
+     * RED_BACKGROUND: color de error al introducir un campo de manera erronea.
+     */
     public static final Color RED_BACKGROUND = new Color(250, 165, 165);
 }

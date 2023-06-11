@@ -12,19 +12,35 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
+ * InicioController: es el controlador de inicio. Permite al usuario escoger si
+ * entrar o registrarse. Al ser una aplicacion para administradores, este
+ * registro no esta permitido para cualquier usuario. Para poder registrarse, el
+ * dni de usuario ya debe estar aniadido a la base de datos.
  *
  * @author noelp
  */
 public class InicioController {
 
+    /**
+     * vista: la vista del controlador.
+     */
     private GUIInicio vista;
 
+    /**
+     * InicioController: constuctor del controlador. Recoge la vista pasada por
+     * parametro, prueba la conexion y aniade los escuchadores.
+     *
+     * @param vista la vista del controlador
+     */
     public InicioController(GUIInicio vista) {
         this.vista = vista;
         tryConn();
         setActionListener();
     }
 
+    /**
+     * al: es el escuchador de los botones de entrar y registrar.
+     */
     private ActionListener al = (e) -> {
         JButton opt = (JButton) (e.getSource());
         if (opt.equals(vista.getOptButtons().get(0))) {
@@ -34,22 +50,31 @@ public class InicioController {
             vista.setVisible(false);
             RegistroController rc = new RegistroController(new GUIRegistro(), vista);
         } else {
-            System.out.println("ERROR");
+            System.err.println("Error");
         }
     };
 
+    /**
+     * setActionListener: aniade el escuchador de accion a los botones.
+     */
     private void setActionListener() {
         for (JButton opt : vista.getOptButtons()) {
             opt.addActionListener(al);
         }
     }
 
+    /**
+     * tryConn: prueba la conexion, si no es valida cierra el programa.
+     */
     private void tryConn() {
         if (!ConexionBD.isValid()) {
             System.exit(0);
         }
     }
 
+    /**
+     * launch: pone visible la ventana.
+     */
     public void launch() {
         vista.setVisible(true);
     }

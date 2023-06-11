@@ -23,16 +23,41 @@ import javax.swing.SwingConstants;
  */
 public class GUIRegistro extends javax.swing.JFrame {
 
+    /**
+     * tamPantalla: el tamanio de la pantalla.
+     */
     private Dimension tamPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 
+    /**
+     * panelBotones: es el panel donde se colocan los botones.
+     */
     private JPanel panelBotones;
+    /**
+     * panelTextFields: es el panel donde se colocan las cajas de texto.
+     */
     private JPanel panelTextFields;
 
+    /**
+     * textFdni: es la caja de texto donde introducir el dni.
+     */
     private JTextField textFdni;
+    /**
+     * textFPassword: es la caja de texto donde introducir la contrasenia.
+     */
     private JPasswordField textFPassword;
+    /**
+     * confirmPassword: es la caja de texto donde introducir la confirmacion de
+     * contrasenia.
+     */
     private JPasswordField confirmPassword;
 
+    /**
+     * cancelarBut: es el boton de cancelar.
+     */
     private JButton cancelarBut;
+    /**
+     * aceptarBut: es el boton de aceptar.
+     */
     private JButton aceptarBut;
 
     /**
@@ -43,6 +68,10 @@ public class GUIRegistro extends javax.swing.JFrame {
         setFrame();
     }
 
+    /**
+     * setFrame: es el metodo principal que ajusta y coloca componentes por
+     * pantalla
+     */
     private void setFrame() {
         this.setTitle("Acceder");
         this.setSize(tamPantalla);
@@ -52,6 +81,9 @@ public class GUIRegistro extends javax.swing.JFrame {
         setButtons();
     }
 
+    /**
+     * setTextFields: coloca y crea las cajas de texto en la ventana.
+     */
     private void setTextFields() {
         //va un poco mejor pero no me acaba de convencer
         textFdni = new JTextField();
@@ -85,6 +117,9 @@ public class GUIRegistro extends javax.swing.JFrame {
         this.getContentPane().add(panelTextFields);
     }
 
+    /**
+     * setButtons: coloca y crea los botones en la ventana.
+     */
     private void setButtons() {
         cancelarBut = new JButton("Cancelar");
         aceptarBut = new JButton("Aceptar");
@@ -94,46 +129,63 @@ public class GUIRegistro extends javax.swing.JFrame {
         panelBotones.add(cancelarBut);
     }
 
+    /**
+     * getTextFdni: devuelve un JTextField que es donde se introducira el dni
+     *
+     * @see JTextField
+     *
+     * @return un JTextField
+     */
     public JTextField getTextFdni() {
         return textFdni;
     }
 
-    public void setTextFdni(JTextField textFdni) {
-        this.textFdni = textFdni;
-    }
-
+    /**
+     * getTextFPassword: devuelve un JPasswordField que es donde se introducira
+     * la contrasenia.
+     *
+     * @see JPasswordField
+     *
+     * @return un JPasswordField
+     */
     public JPasswordField getTextFPassword() {
         return textFPassword;
     }
 
-    public void setTextFPassword(JPasswordField textFPassword) {
-        this.textFPassword = textFPassword;
-    }
-
+    /**
+     * getConfirmPassword: devuelve un JPasswordField que es donde se
+     * introducira la confirmacion de la contrasenia.
+     *
+     * @see JPasswordField
+     *
+     * @return un JPasswordField
+     */
     public JPasswordField getConfirmPassword() {
         return confirmPassword;
     }
 
-    public void setConfirmPassword(JPasswordField confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
+    /**
+     * getCancelarBut: devuelve un JButton que sera el boton de cancelar.
+     *
+     * @see JButton
+     *
+     * @return un JButton
+     */
     public JButton getCancelarBut() {
         return cancelarBut;
     }
 
-    public void setCancelarBut(JButton cancelarBut) {
-        this.cancelarBut = cancelarBut;
-    }
-
+    /**
+     * getAceptarBut: devuelve un JButton que sera el boton de aceptar.
+     *
+     * @see JButton
+     *
+     * @return un JButton
+     */
     public JButton getAceptarBut() {
         return aceptarBut;
     }
 
-    public void setAceptarBut(JButton aceptarBut) {
-        this.aceptarBut = aceptarBut;
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,41 +210,6 @@ public class GUIRegistro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GUIRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GUIRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GUIRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GUIRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GUIRegistro().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

@@ -20,22 +20,48 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
+ * LoginController: es el controlador de entrar a la aplicacion. Muestra dos
+ * cajas de texto donde se debe introducir el dni y la contrasenia. Si todos los
+ * campos son validos y coinciden con la base de datos entra a la aplicacion.
  *
  * @author noelp
  */
 public class LoginController {
 
+    /**
+     * vistaPadre: es la vista que le ha llamado. Se pone visible al cancelar la
+     * operacion.
+     */
     private GUIInicio vistaPadre;
 
+    /**
+     * vista: es la vista del controlador.
+     */
     private GUILogin vista;
 
+    /**
+     * adminLogic: es la logica de negocio que se va a implementar dependiendo
+     * de los imputs del usuario en la ventana.
+     */
     private AdministradorLogic adminLogic;
 
+    /**
+     * dni: es el dni introducido.
+     */
     private String dni;
+    /**
+     * password: es la contrasenia introducida.
+     */
     private String password;
 
+    /**
+     * errorMsg: codigo del mensaje de error que saltara.
+     */
     private int errorMsg;
 
+    /**
+     * al: el escuchador de accion de los botones aceptar y cancelar.
+     */
     private ActionListener al = (e) -> {
         JButton but = (JButton) e.getSource();
         if (but.equals(vista.getCancelarBut())) {
@@ -53,7 +79,7 @@ public class LoginController {
                     //lanza al menu principal
                     vista.dispose();
                     GUIPrincipal principal = new GUIPrincipal();
-                    PrincipalController pc = new PrincipalController(vistaPadre, principal);
+                    PrincipalController pc = new PrincipalController(principal);
                 } else {
                     showMessage();
                 }
@@ -64,6 +90,10 @@ public class LoginController {
         }
     };
 
+    /**
+     * ka1: al dar al enter se pone automaticamente a escribir en la casilla de
+     * contrasenia desde la casilla del dni.
+     */
     private KeyAdapter ka1 = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -74,6 +104,10 @@ public class LoginController {
 
     };
 
+    /**
+     * ka2: al dar al enter da al boton de aceptar automaticamente desde la
+     * casilla de contrasenia.
+     */
     private KeyAdapter ka2 = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -83,6 +117,30 @@ public class LoginController {
         }
     };
 
+    /**
+     * LoginController: constructor del controlador. Recibe por parametro la
+     * vista del controlador y la vista que lo ha llamado (mediante el
+     * controlador de la misma).
+     *
+     * @param vista la vista del controlador
+     * @param parent la vista padre
+     */
+    public LoginController(GUILogin vista, GUIInicio parent) {
+        this.vistaPadre = parent;
+        this.vista = vista;
+        this.adminLogic = new AdministradorLogic();
+        addActionListener();
+        launchView();
+    }
+
+    /**
+     * comprobarDatos: comprueba los datos de los inputs.
+     *
+     * @return true -> si los datos son correctos, false -> si son datos
+     * incorrectos
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
+     */
     private boolean comprobarDatos() throws SQLException {
         if (Validaciones.validateDni(dni)) {
             Administrador admin = adminLogic.selectDni(dni);
@@ -101,14 +159,10 @@ public class LoginController {
         return false;
     }
 
-    public LoginController(GUILogin vista, GUIInicio parent) {
-        this.vistaPadre = parent;
-        this.vista = vista;
-        this.adminLogic = new AdministradorLogic();
-        addActionListener();
-        launchView();
-    }
-
+    /**
+     * addActionListener: aniade los escuchadores a los componentes de la
+     * ventana.
+     */
     private void addActionListener() {
         vista.getAceptarBut().addActionListener(al);
         vista.getCancelarBut().addActionListener(al);
@@ -116,6 +170,10 @@ public class LoginController {
         vista.getTextFPassword().addKeyListener(ka2);
     }
 
+    /**
+     * showMessage: muestra un error dependiendo del codigo almacenado en
+     * {@link #errorMsg}
+     */
     private void showMessage() {
         setWhite();
         switch (errorMsg) {
@@ -136,11 +194,17 @@ public class LoginController {
         }
     }
 
+    /**
+     * setWhite: actualiza todos los componentes a blanco.
+     */
     private void setWhite() {
         vista.getTextFdni().setBackground(Color.white);
         vista.getTextFPassword().setBackground(Color.white);
     }
 
+    /**
+     * launchView: lanza la vista del controlador (la pone visible).
+     */
     private void launchView() {
         vista.setVisible(true);
     }

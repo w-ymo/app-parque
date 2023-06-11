@@ -45,7 +45,7 @@ public class EventoDAO {
             ps.setDate(2, Date.valueOf(e.getFecha_evento()));
             ps.setInt(3, e.getNumero_participantes());
             ps.setInt(4, e.getNumero_sala());
-            ps.setBoolean(5, e.isEs_cumple());
+            ps.setBoolean(5, e.isCumple());
             ps.setInt(6, e.getId_menu());
             return ps.executeUpdate();
         }
@@ -69,7 +69,7 @@ public class EventoDAO {
             ps.setDate(2, Date.valueOf(e.getFecha_evento()));
             ps.setInt(3, e.getNumero_participantes());
             ps.setInt(4, e.getNumero_sala());
-            ps.setBoolean(5, e.isEs_cumple());
+            ps.setBoolean(5, e.isCumple());
             return ps.executeUpdate();
         }
     }
@@ -91,7 +91,7 @@ public class EventoDAO {
             ps.setString(1, e.getNombre_evento());
             ps.setDate(2, Date.valueOf(e.getFecha_evento()));
             ps.setInt(3, e.getNumero_participantes());
-            ps.setBoolean(4, e.isEs_cumple());
+            ps.setBoolean(4, e.isCumple());
             ps.setInt(5, e.getId_menu());
             return ps.executeUpdate();
         }
@@ -114,7 +114,7 @@ public class EventoDAO {
             ps.setString(1, e.getNombre_evento());
             ps.setDate(2, Date.valueOf(e.getFecha_evento()));
             ps.setInt(3, e.getNumero_participantes());
-            ps.setBoolean(4, e.isEs_cumple());
+            ps.setBoolean(4, e.isCumple());
             return ps.executeUpdate();
         }
     }

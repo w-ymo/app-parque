@@ -25,31 +25,76 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 /**
+ * GUIReserva: una ventana donde meter los datos para reservar.
  *
  * @author noelp
  */
 public class GUIReserva extends javax.swing.JFrame {
 
+    /**
+     * tamPantalla: el tamanio de la pantalla.
+     */
     private Dimension tamPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 
+    /**
+     * panelOpciones: el panel con los campos a rellenar.
+     */
     private JPanel panelOpciones;
+    /**
+     * panelBotones: el panel donde iran los botones de aceptar y cancelar.
+     */
     private JPanel panelBotones;
+    /**
+     * panelCentrar: el panel para centrar los elementos.
+     */
     private JPanel panelCentrar;
 
+    /**
+     * textosCampos: un array de cadenas con los nombres de los campos.
+     */
     private final String[] textosCampos = {"Nombre: ", "Fecha: ", "Numero de participantes: ", "Menu: ", "Sala: ", "Es cumple: "};
 
+    /**
+     * nombreEvento: una caja de texto donde introducir el nombre del evento.
+     */
     private JTextField nombreEvento;
-    //fecha
+    /**
+     * modelo: un modelo para escoger la fecha.
+     */
     UtilDateModel modelo = new UtilDateModel();
+    /**
+     * panelDate: el panel que muestra la fecha.
+     */
     private JDatePanelImpl panelDate = new JDatePanelImpl(modelo, new Properties());
+    /**
+     * panelPicker: el componente que permite escoger la fecha.
+     */
     private JDatePickerImpl panelPicker = new JDatePickerImpl(panelDate, new DateComponentFormatter());
-    //mas movidas
+    /**
+     * numeroParticipantes: una caja de texto donde introducir el numero de
+     * participantes.
+     */
     private JTextField numeroParticipantes;
+    /**
+     * opcionesMenu: un desplegable con las opciones de menu.
+     */
     private JComboBox<Menu> opcionesMenu = new JComboBox<>();
+    /**
+     * opcionesSala: un desplegable con las opciones de la sala.
+     */
     private JComboBox<String> opcionesSala = new JComboBox<>();
+    /**
+     * checkIsCumple: una casilla para marcar si es cumple o no.
+     */
     private JCheckBox checkIsCumple;
-    
+
+    /**
+     * cancelarBut: es el boton de cancelar.
+     */
     private JButton cancelarBut;
+    /**
+     * aceptarBut: es el boton de aceptar.
+     */
     private JButton aceptarBut;
 
     /**
@@ -60,6 +105,10 @@ public class GUIReserva extends javax.swing.JFrame {
         setFrame();
     }
 
+    /**
+     * setFrame: es el metodo principal que ajusta y coloca componentes por
+     * pantalla
+     */
     private void setFrame() {
         this.setTitle("Reservar");
         this.setSize(tamPantalla);
@@ -69,6 +118,9 @@ public class GUIReserva extends javax.swing.JFrame {
         setButtons();
     }
 
+    /**
+     * setTextFields: coloca los campos a rellenar por pantalla.
+     */
     private void setTextFields() {
         panelOpciones = new JPanel(new BorderLayout());
         panelCentrar = new JPanel(new GridLayout(6, 0));
@@ -82,6 +134,9 @@ public class GUIReserva extends javax.swing.JFrame {
         this.getContentPane().add(panelOpciones);
     }
 
+    /**
+     * setTNombreField: coloca la caja de texto para el nombre del evento.
+     */
     private void setTFNombreField() {
         nombreEvento = new JTextField();
         nombreEvento.setPreferredSize(new Dimension(200, 30));
@@ -95,6 +150,9 @@ public class GUIReserva extends javax.swing.JFrame {
         panelCentrar.add(panelExtra);
     }
 
+    /**
+     * setPickerFechaField: coloca el componente para escoger la fecha.
+     */
     private void setPickerFechaField() {
         JPanel panelExtra = new JPanel(new GridLayout(0, 2));
         JLabel texto = new JLabel(textosCampos[1]);
@@ -106,6 +164,10 @@ public class GUIReserva extends javax.swing.JFrame {
         panelCentrar.add(panelExtra);
     }
 
+    /**
+     * setTFNumeroParticipantes: coloca la caja de texto para escoger el numero
+     * de participantes.
+     */
     private void setTFNumeroParticipantes() {
         numeroParticipantes = new JTextField();
         numeroParticipantes.setPreferredSize(new Dimension(200, 30));
@@ -119,6 +181,9 @@ public class GUIReserva extends javax.swing.JFrame {
         panelCentrar.add(panelExtra);
     }
 
+    /**
+     * setComboOpcionMenu; coloca el desplegable para escoger el menu.
+     */
     private void setComboOpcionMenu() {
         JPanel panelExtra = new JPanel(new GridLayout(0, 2));
         JLabel texto = new JLabel(textosCampos[3]);
@@ -130,6 +195,9 @@ public class GUIReserva extends javax.swing.JFrame {
         panelCentrar.add(panelExtra);
     }
 
+    /**
+     * setComboNumeroSala: coloca el desplegable para escoger la sala.
+     */
     private void setComboNumeroSala() {
         JPanel panelExtra = new JPanel(new GridLayout(0, 2));
         JLabel texto = new JLabel(textosCampos[4]);
@@ -141,6 +209,10 @@ public class GUIReserva extends javax.swing.JFrame {
         panelCentrar.add(panelExtra);
     }
 
+    /**
+     * setRadioIsCumple: coloca la casilla para marcar en el caso de que sea
+     * cumple.
+     */
     private void setRadioIsCumple() {
         checkIsCumple = new JCheckBox();
         JPanel panelExtra = new JPanel(new GridLayout(0, 2));
@@ -153,6 +225,9 @@ public class GUIReserva extends javax.swing.JFrame {
         panelCentrar.add(panelExtra);
     }
 
+    /**
+     * setButtons: coloca y crea los botones en la ventana.
+     */
     private void setButtons() {
         cancelarBut = new JButton("Cancelar");
         aceptarBut = new JButton("Aceptar");
@@ -162,78 +237,102 @@ public class GUIReserva extends javax.swing.JFrame {
         panelBotones.add(cancelarBut);
     }
 
+    /**
+     * getNombreEvento: devuelve un JTextField donde se introducira el nombre
+     * del evento.
+     *
+     * @see JTextField
+     *
+     * @return un JTextField
+     */
     public JTextField getNombreEvento() {
         return nombreEvento;
     }
 
-    public void setNombreEvento(JTextField nombreEvento) {
-        this.nombreEvento = nombreEvento;
-    }
-
+    /**
+     * getModelo: devuelve el modelo que utiliza JDatePicker para seleccionar la
+     * fecha.
+     *
+     * @see UtilDateModel
+     * @see JDatePanelImpl
+     * @see JDatePickerImpl
+     *
+     * @return un UtilDateModel
+     */
     public UtilDateModel getModelo() {
         return modelo;
     }
 
-    public void setModelo(UtilDateModel modelo) {
-        this.modelo = modelo;
-    }
-
-    public JDatePanelImpl getPanelDate() {
-        return panelDate;
-    }
-
-    public void setPanelDate(JDatePanelImpl panelDate) {
-        this.panelDate = panelDate;
-    }
-    
+    /**
+     * getOpcionesMenu: devuelve un JComboBox de String que muestra los menus
+     * disponibles.
+     *
+     * @see JComboBox
+     *
+     * @return un JComboBox
+     */
     public JComboBox<Menu> getOpcionesMenu() {
         return opcionesMenu;
     }
 
-    public void setOpcionesMenu(JComboBox<Menu> opcionesMenu) {
-        this.opcionesMenu = opcionesMenu;
-    }
-
+    /**
+     * getNumeroParticipantes: devuelve un JTextField donde se introducira el
+     * numero de participantes.
+     *
+     * @see JTextField
+     *
+     * @return un JTextField
+     */
     public JTextField getNumeroParticipantes() {
         return numeroParticipantes;
     }
 
-    public void setNumeroParticipantes(JTextField numeroParticipantes) {
-        this.numeroParticipantes = numeroParticipantes;
-    }
-
+    /**
+     * getOpcionesSala: devuelve un JComboBox de String con las salas
+     * disponibles.
+     *
+     * @see JComboBox
+     *
+     * @return un JComboBox
+     */
     public JComboBox<String> getOpcionesSala() {
         return opcionesSala;
     }
 
-    public void setOpcionesSala(JComboBox<String> opcionesSala) {
-        this.opcionesSala = opcionesSala;
-    }
-
+    /**
+     * getCheckIsCumple: devuelve un JCheckBox que marca si el evento es cumple
+     * o no. Si esta marcado es cumple y si no esta marcado no lo es.
+     *
+     * @see JCheckBox
+     *
+     * @return un JCheckBox
+     */
     public JCheckBox getCheckIsCumple() {
         return checkIsCumple;
     }
 
-    public void setCheckIsCumple(JCheckBox checkIsCumple) {
-        this.checkIsCumple = checkIsCumple;
-    }
-
+    /**
+     * getCancelarBut: devuelve un JButton que sera el boton de cancelar.
+     *
+     * @see JButton
+     *
+     * @return un JButton
+     */
     public JButton getCancelarBut() {
         return cancelarBut;
     }
 
-    public void setCancelarBut(JButton cancelarBut) {
-        this.cancelarBut = cancelarBut;
-    }
-
+    /**
+     * getAceptarBut: devuelve un JButton que sera el boton de aceptar.
+     *
+     * @see JButton
+     *
+     * @return un JButton
+     */
     public JButton getAceptarBut() {
         return aceptarBut;
     }
 
-    public void setAceptarBut(JButton aceptarBut) {
-        this.aceptarBut = aceptarBut;
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

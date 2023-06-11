@@ -9,6 +9,7 @@ import com.gf.app.parque.logic.AdministradorLogic;
 import com.gf.app.parque.resources.Colors;
 import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIInicio;
+import com.gf.app.parque.view.GUILogin;
 import com.gf.app.parque.view.GUIPrincipal;
 import com.gf.app.parque.view.GUIRegistro;
 import java.awt.Color;
@@ -20,15 +21,26 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
+ * RegistroController: es el controlador de la vista de registro de contrasenia.
+ * En el se muestran 3 cajas de texto. La primera es para el dni, la segunda la
+ * contrasenia y la tercera para la confirmacion de la misma. Si todos los
+ * campos son validos, el trabajador esta en la base de datos y no tiene
+ * contrasenia se da por valido y actualiza el campo contrasenia.
  *
  * @author noelp
  */
 public class RegistroController {
 
+    /**
+     * vistaPadre: es la vista que le ha llamado. Se pone visible al cancelar la
+     * operacion.
+     */
     private GUIInicio vistaPadre;
 
+    /**
+     * vista: es la vista del controlador.
+     */
     private GUIRegistro vista;
-
     private AdministradorLogic adminLogic;
 
     private String dni;
@@ -57,7 +69,7 @@ public class RegistroController {
                 if (comprobarDatos()) {
                     vista.dispose();
                     GUIPrincipal principal = new GUIPrincipal();
-                    PrincipalController pc = new PrincipalController(vistaPadre, principal);
+                    PrincipalController pc = new PrincipalController(principal);
                 } else {
                     showMessage();
                 }

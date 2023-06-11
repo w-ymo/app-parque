@@ -10,17 +10,40 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
+ * ConexionBD: es la clase que permite la conexion con la base de datos.
  *
  * @author noelp
  */
 public class ConexionBD {
 
+    /**
+     * con: tipo Connection que representa la conexion con la base de datos.
+     */
     private static Connection con;
 
+    /**
+     * URL: constante que refleja la url de la base de datos.
+     */
     private static final String URL = "jdbc:mysql://localhost:3306/parque_bolas";
+    /**
+     * USER: constante que indica el usuario.
+     */
     private static final String USER = "root";
+    /**
+     * PASSWD: constante que indica la contrasenia.
+     */
     private static final String PASSWD = "";
 
+    /**
+     * getConnection: es el metodo que conecta con la base de datos y devuelve
+     * la conexion.
+     *
+     * @see Connection
+     *
+     * @return un objeto de tipo Connection
+     * @throws java.sql.SQLException si no consigue acceder a la base de datos
+     * (base de datos no encontrada)
+     */
     public static Connection getConnection() throws SQLException {
         con = DriverManager.getConnection(URL, USER, PASSWD);
         return con;

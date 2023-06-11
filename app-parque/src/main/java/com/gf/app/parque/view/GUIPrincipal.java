@@ -13,15 +13,25 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
+ * GUIPrincipal: es la ventana que tiene el menu de opciones.
  *
  * @author noelp
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
+    /**
+     * tamPantalla: el tamanio de la pantalla.
+     */
     private Dimension tamPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 
+    /**
+     * panelMenu: es el panel donde se pondran las opciones.
+     */
     private JPanel panelMenu;
 
+    /**
+     * botonReserva: es el boton de la opcion reserva.
+     */
     private JButton botonReserva;
 
     /**
@@ -32,6 +42,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setFrame();
     }
 
+    /**
+     * setFrame: es el metodo principal que ajusta y coloca componentes por
+     * pantalla
+     */
     private void setFrame() {
         this.setTitle("Reservar");
         this.setSize(tamPantalla);
@@ -40,6 +54,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setButtons();
     }
 
+    /**
+     * setButtons: coloca y crea los botones en la ventana.
+     */
     private void setButtons() {
         panelMenu = new JPanel(new FlowLayout(FlowLayout.CENTER));
         botonReserva = new JButton("Reserva");
@@ -48,12 +65,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
         this.getContentPane().add(panelMenu, BorderLayout.CENTER);
     }
 
+    /**
+     * getBotonReserva: devuelve un JButton que sera el boton de la opcion
+     * reserva.
+     *
+     * @see JButton
+     *
+     * @return un JButton
+     */
     public JButton getBotonReserva() {
         return botonReserva;
-    }
-
-    public void setBotonReserva(JButton botonReserva) {
-        this.botonReserva = botonReserva;
     }
 
     /**

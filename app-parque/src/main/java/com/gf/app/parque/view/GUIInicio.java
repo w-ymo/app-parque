@@ -96,7 +96,7 @@ public class GUIInicio extends javax.swing.JFrame {
     /**
      * getOptButtons: devuelve una lista de botones. Son las opciones de acceso.
      *
-     * @return una lista de botones
+     * @return una lista de JButton
      */
     public List<JButton> getOptButtons() {
         return optButtons;

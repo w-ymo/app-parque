@@ -179,11 +179,9 @@ public class ReservaController {
             }
             case 2 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Fecha no introducida.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                vista.getPanelDate().setBackground(Colors.RED_BACKGROUND);
             }
             case 3 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Fecha anterior al día de hoy.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                vista.getPanelDate().setBackground(Colors.RED_BACKGROUND);
             }
             case 4 -> {
                 JOptionPane.showMessageDialog(vista, "Error. No has introducido número de participantes.", "ERROR", JOptionPane.ERROR_MESSAGE);

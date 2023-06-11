@@ -22,6 +22,12 @@ public class AdministradorLogic {
     private AdministradorDAO adminDAO = new AdministradorDAO();
 
     /**
+     * DEFAULT CONSTRUCTOR
+     */
+    public AdministradorLogic() {
+    }
+
+    /**
      * update: actualiza el administrador cuyo dni sea el pasado por parametro y
      * actualiza su contraseña.
      *
