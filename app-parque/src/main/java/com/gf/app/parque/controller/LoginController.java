@@ -41,7 +41,7 @@ public class LoginController {
 
     /**
      * adminLogic: es la logica de negocio que se va a implementar dependiendo
-     * de los imputs del usuario en la ventana.
+     * de los inputs del usuario en la ventana.
      */
     private AdministradorLogic adminLogic;
 

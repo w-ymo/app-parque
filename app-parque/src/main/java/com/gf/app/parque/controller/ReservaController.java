@@ -12,6 +12,7 @@ import com.gf.app.parque.resources.Colors;
 import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIPrincipal;
 import com.gf.app.parque.view.GUIReserva;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.time.ZoneId;
@@ -20,25 +21,55 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
- * ReservaController:
+ * ReservaController: es el controlador para reservar un evento. En el se
+ * muestran los campos nombre, fecha, numero de participantes, menu, sala y es
+ * cumple para rellenarlos con los datos necesarios. Comprueba los campos y si
+ * son validos lo aniade a la base de datos.
  *
  * @author noelp
  */
 public class ReservaController {
 
+    /**
+     * vistaPadre: es la vista que le ha llamado. Se pone visible al cancelar la
+     * operacion.
+     */
     private GUIPrincipal vistaPadre;
 
+    /**
+     * vista: es la vista del controlador.
+     */
     private GUIReserva vista;
 
+    /**
+     * NOMBRES_SALAS: es un array que contiene las salas del centro.
+     */
     private final static String[] NOMBRES_SALAS = {"No seleccionado", "1. Sala dragones", "2. Sala jungla", "3. Sala deportes", "4. Sala fortnite"};
 
+    /**
+     * mLogic: es la logica de negocio que se va a implementar dependiendo de
+     * los inputs del usuario en la ventana.
+     */
     private MenuLogic mLogic = new MenuLogic();
+    /**
+     * eLogic: es la logica de negocio que se va a implementar dependiendo de
+     * los inputs del usuario en la ventana.
+     */
     private EventoLogic eLogic = new EventoLogic();
 
+    /**
+     * evento: el evento con el que se van a realizar las operaciones.
+     */
     private Evento evento;
 
+    /**
+     * errorMsg: codigo del mensaje de error que saltara.
+     */
     private int errorMsg;
 
+    /**
+     * al: el escuchador de accion de los botones aceptar y cancelar.
+     */
     private ActionListener al = (e) -> {
         JButton but = (JButton) e.getSource();
         if (but.equals(vista.getCancelarBut())) {
@@ -55,7 +86,6 @@ public class ReservaController {
                     }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(vista, "Error de sintaxis.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    ex.printStackTrace();
                 }
             } else {
                 showMessage();
@@ -63,6 +93,15 @@ public class ReservaController {
         }
     };
 
+    /**
+     * ReservaController: constructor del controlador. Recibe por parametro la
+     * vista del controlador y la vista que lo ha llamado (mediante el
+     * controlador de la misma). Tambien da valor a los componentes de la
+     * ventana. 
+     *
+     * @param vistaPadre la vista que lo ha llamado
+     * @param vista la vista del controlador
+     */
     public ReservaController(GUIPrincipal vistaPadre, GUIReserva vista) {
         this.vistaPadre = vistaPadre;
         this.vista = vista;
@@ -112,6 +151,10 @@ public class ReservaController {
         return true;
     }
 
+    /**
+     * getContentInputFields: actualiza los valores del evento a nivel de clase
+     * con los inputs de la ventana.
+     */
     private void getContentInputFields() {
         evento = new Evento();
         String nombre = vista.getNombreEvento().getText();
@@ -128,6 +171,11 @@ public class ReservaController {
         evento.setEs_cumple(esCumple);
     }
 
+    /**
+     * getSelectedMenu: devuelve el menu seleccionado.
+     *
+     * @return un entero que representa el identificador del menu
+     */
     private Integer getSelectedMenu() {
         Integer numero = null;
         if (vista.getOpcionesMenu().getSelectedIndex() != 0) {
@@ -137,6 +185,11 @@ public class ReservaController {
         return numero;
     }
 
+    /**
+     * getSelectedSala: devuelve la sala seleccionada.
+     *
+     * @return un entero que representa la sala seleccionada
+     */
     private Integer getSelectedSala() {
         Integer numero = null;
         if (vista.getOpcionesMenu().getSelectedIndex() > 1) {
@@ -147,6 +200,9 @@ public class ReservaController {
         return numero;
     }
 
+    /**
+     * setInfoMenu: da el valor al desplegable del menu.
+     */
     private void setInfoMenu() {
         Menu noSeleccionado = new Menu();
         noSeleccionado.setNombre_menu("No seleccionado");
@@ -160,18 +216,30 @@ public class ReservaController {
         }
     }
 
+    /**
+     * setInfoSalas: da los valores al desplegable de las salas.
+     */
     private void setInfoSalas() {
         for (String string : NOMBRES_SALAS) {
             this.vista.getOpcionesSala().addItem(string);
         }
     }
 
+    /**
+     * addActionListenerButton: aniade los escuchadores a los componentes de la
+     * ventana.
+     */
     private void addActionListenerButton() {
         vista.getCancelarBut().addActionListener(al);
         vista.getAceptarBut().addActionListener(al);
     }
 
+    /**
+     * showMessage: muestra un error dependiendo del codigo almacenado en
+     * {@link #errorMsg}
+     */
     private void showMessage() {
+        setWhite();
         switch (errorMsg) {
             case 1 -> {
                 JOptionPane.showMessageDialog(vista, "Error. Nombre del evento vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -201,6 +269,17 @@ public class ReservaController {
         }
     }
 
+    /**
+     * setWhite: actualiza todos los componentes a blanco.
+     */
+    private void setWhite() {
+        vista.getNombreEvento().setBackground(Color.white);
+        vista.getNumeroParticipantes().setBackground(Color.white);
+    }
+
+    /**
+     * launchView: lanza la vista del controlador (la pone visible).
+     */
     private void launchView() {
         vista.setVisible(true);
     }

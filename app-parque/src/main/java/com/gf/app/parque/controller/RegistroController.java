@@ -9,7 +9,6 @@ import com.gf.app.parque.logic.AdministradorLogic;
 import com.gf.app.parque.resources.Colors;
 import com.gf.app.parque.resources.Validaciones;
 import com.gf.app.parque.view.GUIInicio;
-import com.gf.app.parque.view.GUILogin;
 import com.gf.app.parque.view.GUIPrincipal;
 import com.gf.app.parque.view.GUIRegistro;
 import java.awt.Color;
@@ -41,14 +40,34 @@ public class RegistroController {
      * vista: es la vista del controlador.
      */
     private GUIRegistro vista;
+
+    /**
+     * adminLogic: es la logica de negocio que se va a implementar dependiendo
+     * de los inputs del usuario en la ventana.
+     */
     private AdministradorLogic adminLogic;
 
+    /**
+     * dni: es el dni introducido.
+     */
     private String dni;
+    /**
+     * password: es la contrasenia introducida.
+     */
     private String password;
+    /**
+     * passwordB: es la confirmacion de contrasenia introducida.
+     */
     private String passwordB;
 
+    /**
+     * errorMsg: codigo del mensaje de error que saltara.
+     */
     private int errorMsg;
 
+    /**
+     * al: el escuchador de accion de los botones aceptar y cancelar.
+     */
     private ActionListener al = (e) -> {
         JButton but = (JButton) e.getSource();
         if (but.equals(vista.getCancelarBut())) {
@@ -80,6 +99,10 @@ public class RegistroController {
 
     };
 
+    /**
+     * ka1: al dar al enter se pone automaticamente a escribir en la casilla de
+     * contrasenia desde la casilla del dni.
+     */
     private KeyAdapter ka1 = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -90,6 +113,10 @@ public class RegistroController {
 
     };
 
+    /**
+     * ka2: al dar al enter se pone automaticamente a escribir en la casilla de
+     * confirmar contrasenia desde la casilla de la contrasenia.
+     */
     private KeyAdapter ka2 = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -99,6 +126,10 @@ public class RegistroController {
         }
     };
 
+    /**
+     * ka3: al dar al enter da al boton de aceptar automaticamente desde la
+     * casilla de confirmar contrasenia.
+     */
     private KeyAdapter ka3 = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -108,6 +139,14 @@ public class RegistroController {
         }
     };
 
+    /**
+     * comprobarDatos: comprueba los datos de los inputs.
+     *
+     * @return true -> si los datos son correctos, false -> si son datos
+     * incorrectos
+     * @throws SQLException si no consigue acceder a la base de datos (error
+     * sintactico o base de datos no encontrada)
+     */
     private boolean comprobarDatos() throws SQLException {
         if (Validaciones.validateDni(dni)) {
             Administrador admin = adminLogic.selectDni(dni);
@@ -134,6 +173,14 @@ public class RegistroController {
         return false;
     }
 
+    /**
+     * RegistroController: constructor del controlador. Recibe por parametro la
+     * vista del controlador y la vista que lo ha llamado (mediante el
+     * controlador de la misma).
+     *
+     * @param vista la vista del controlador
+     * @param parent la vista padre
+     */
     public RegistroController(GUIRegistro vista, GUIInicio parent) {
         this.vistaPadre = parent;
         this.vista = vista;
@@ -142,6 +189,10 @@ public class RegistroController {
         launchView();
     }
 
+    /**
+     * addActionListener: aniade los escuchadores a los componentes de la
+     * ventana.
+     */
     private void addActionListener() {
         vista.getAceptarBut().addActionListener(al);
         vista.getCancelarBut().addActionListener(al);
@@ -150,6 +201,10 @@ public class RegistroController {
         vista.getConfirmPassword().addKeyListener(ka3);
     }
 
+    /**
+     * showMessage: muestra un error dependiendo del codigo almacenado en
+     * {@link #errorMsg}
+     */
     private void showMessage() {
         setWhite();
         switch (errorMsg) {
@@ -180,12 +235,18 @@ public class RegistroController {
         }
     }
 
+    /**
+     * setWhite: actualiza todos los componentes a blanco.
+     */
     private void setWhite() {
         vista.getTextFdni().setBackground(Color.white);
         vista.getTextFPassword().setBackground(Color.white);
         vista.getConfirmPassword().setBackground(Color.white);
     }
 
+    /**
+     * launchView: lanza la vista del controlador (la pone visible).
+     */
     private void launchView() {
         vista.setVisible(true);
     }
