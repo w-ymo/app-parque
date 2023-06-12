@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * AdministradorDAOTest: clase de testeo de los metodos de la clase de acceso a
  * datos AdministradorDAO.
  *
- * @author noelp
+ * @author priparno
  */
 public class AdministradorDAOTest {
 

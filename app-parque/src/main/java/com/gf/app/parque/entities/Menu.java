@@ -7,7 +7,7 @@ package com.gf.app.parque.entities;
 /**
  * Menu: representa un menu de la base de datos.
  *
- * @author noelp
+ * @author priparno
  */
 public class Menu {
 

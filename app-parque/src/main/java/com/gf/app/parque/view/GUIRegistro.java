@@ -18,8 +18,13 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
+ * GUIRegistro: es la ventana que permite al usuario registrarse en la
+ * aplicacion. No es un registro al uso ya que tienes que estar dado de alta en
+ * la base de datos para poder modificar tu contrasenia. Aparece una caja de
+ * texto para dni, otras 2 para contrasenia (introducir y confirmar) y los
+ * botones aceptar y cancelar.
  *
- * @author noelp
+ * @author priparno
  */
 public class GUIRegistro extends javax.swing.JFrame {
 

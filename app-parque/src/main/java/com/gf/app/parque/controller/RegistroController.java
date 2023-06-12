@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
  * campos son validos, el trabajador esta en la base de datos y no tiene
  * contrasenia se da por valido y actualiza el campo contrasenia.
  *
- * @author noelp
+ * @author priparno
  */
 public class RegistroController {
 

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 /**
  * ConexionBD: es la clase que permite la conexion con la base de datos.
  *
- * @author noelp
+ * @author priparno
  */
 public class ConexionBD {
 

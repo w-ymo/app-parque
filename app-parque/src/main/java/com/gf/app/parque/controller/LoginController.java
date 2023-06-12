@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  * cajas de texto donde se debe introducir el dni y la contrasenia. Si todos los
  * campos son validos y coinciden con la base de datos entra a la aplicacion.
  *
- * @author noelp
+ * @author priparno
  */
 public class LoginController {
 

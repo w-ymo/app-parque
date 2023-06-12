@@ -9,7 +9,7 @@ import java.time.LocalDate;
 /**
  * Evento: representa un evento de la base de datos.
  *
- * @author noelp
+ * @author priparno
  */
 public class Evento {
 

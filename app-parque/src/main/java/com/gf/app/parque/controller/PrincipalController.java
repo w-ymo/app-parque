@@ -16,7 +16,7 @@ import javax.swing.JButton;
  * <li>Version 1.0: boton reserva unicamente.s</li>
  * </ul>
  *
- * @author noelp
+ * @author priparno
  */
 public class PrincipalController {
 

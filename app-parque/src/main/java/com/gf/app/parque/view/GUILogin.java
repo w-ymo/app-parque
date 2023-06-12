@@ -18,8 +18,10 @@ import javax.swing.SwingConstants;
 
 /**
  * GUILogin: es la ventana que permite al usuario entrar en la aplicacion.
+ * Aparece una caja de texto para dni, otra para contrasenia y los botones
+ * aceptar y cancelar.
  *
- * @author noelp
+ * @author priparno
  */
 public class GUILogin extends javax.swing.JFrame {
 

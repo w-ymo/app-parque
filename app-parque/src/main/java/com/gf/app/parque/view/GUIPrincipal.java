@@ -13,9 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * GUIPrincipal: es la ventana que tiene el menu de opciones.
+ * GUIPrincipal: es la ventana que tiene el menu de opciones. 
  *
- * @author noelp
+ * @author priparno
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 

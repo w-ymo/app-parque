@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Administrador: representa un administrador/trabajador de la base de datos.
  *
- * @author noelp
+ * @author priparno
  */
 public class Administrador {
 
@@ -191,22 +191,24 @@ public class Administrador {
     }
 
     /**
+     * equals: compara dos objetos, si son el mismo devuelve true y si no
+     * devuelve false.
      *
-     * @param obj
-     * @return
+     * @param admin un objeto de tipo admin con el que se compara
+     * @return true -> es el mismo, false -> es distinto
      */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object admin) {
+        if (this == admin) {
             return true;
         }
-        if (obj == null) {
+        if (admin == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != admin.getClass()) {
             return false;
         }
-        final Administrador other = (Administrador) obj;
+        final Administrador other = (Administrador) admin;
         if (!Objects.equals(this.dni_admin, other.dni_admin)) {
             return false;
         }

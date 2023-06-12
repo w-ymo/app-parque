@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
  * GUIInicio: es la ventana principal (da la opcion al usuario de registrarse o
  * acceder).
  *
- * @author noelp
+ * @author priparno
  */
 public class GUIInicio extends javax.swing.JFrame {
 

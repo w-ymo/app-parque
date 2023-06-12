@@ -17,7 +17,7 @@ import javax.swing.JButton;
  * registro no esta permitido para cualquier usuario. Para poder registrarse, el
  * dni de usuario ya debe estar aniadido a la base de datos.
  *
- * @author noelp
+ * @author priparno
  */
 public class InicioController {
 

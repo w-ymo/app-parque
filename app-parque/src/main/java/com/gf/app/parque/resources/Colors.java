@@ -10,7 +10,7 @@ import java.awt.Color;
  * Colors: esta interfaz contiene colores que se utilizan a lo largo de la
  * aplicacion.
  *
- * @author noelp
+ * @author priparno
  */
 public interface Colors {
 

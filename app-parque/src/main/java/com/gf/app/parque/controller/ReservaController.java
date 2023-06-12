@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
  * cumple para rellenarlos con los datos necesarios. Comprueba los campos y si
  * son validos lo aniade a la base de datos.
  *
- * @author noelp
+ * @author priparno
  */
 public class ReservaController {
 

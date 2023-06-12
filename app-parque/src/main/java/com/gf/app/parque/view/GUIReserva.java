@@ -25,9 +25,11 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 /**
- * GUIReserva: una ventana donde meter los datos para reservar.
+ * GUIReserva: una ventana donde meter los datos para reservar. Aparecen los
+ * distintos inputs correspondientes a cada atributo del elemento de la base de
+ * datos.
  *
- * @author noelp
+ * @author priparno
  */
 public class GUIReserva extends javax.swing.JFrame {
 
