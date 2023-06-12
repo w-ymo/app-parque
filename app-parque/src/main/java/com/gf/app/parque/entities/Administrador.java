@@ -4,6 +4,8 @@
  */
 package com.gf.app.parque.entities;
 
+import java.util.Objects;
+
 /**
  * Administrador: representa un administrador/trabajador de la base de datos.
  *
@@ -186,6 +188,44 @@ public class Administrador {
     @Override
     public String toString() {
         return "Administrador(" + dni_admin + "): Nombre y apellidos=" + nombre_admin + " " + apellidos_admin + ", telefono=" + telefono_admin + ", correo=" + correo_admin + ", puesto=" + puesto_admin;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Administrador other = (Administrador) obj;
+        if (!Objects.equals(this.dni_admin, other.dni_admin)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre_admin, other.nombre_admin)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos_admin, other.apellidos_admin)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefono_admin, other.telefono_admin)) {
+            return false;
+        }
+        if (!Objects.equals(this.correo_admin, other.correo_admin)) {
+            return false;
+        }
+        if (!Objects.equals(this.puesto_admin, other.puesto_admin)) {
+            return false;
+        }
+        return Objects.equals(this.password_admin, other.password_admin);
     }
 
 }
