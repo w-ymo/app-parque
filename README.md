@@ -15,11 +15,11 @@ Es el proyecto java maven. Recomendamos correr el programa con dependencias (bui
 En este archivo se han insertado 4 trabajadores de prueba, 3 de ellos sin contraseña y 1 con contraseña para el acceso.
 
 # Datos de contacto
-Equipo de desarrollo:
-Eduardo Martín-Sonseca Alonso (maraloeDev): martinsonsecaeduardo@gmail.com
-Mario Ortúñez Sanz (MareoOrt): mario.ortunez.sanz@gmail.com
-Noel Prieto Pardo (w-ymo): noel.prieto.uva@gmail.com
+#### Equipo de desarrollo:
+- Eduardo Martín-Sonseca Alonso (maraloeDev): martinsonsecaeduardo@gmail.com
+- Mario Ortúñez Sanz (MareoOrt): mario.ortunez.sanz@gmail.com
+- Noel Prieto Pardo (w-ymo): noel.prieto.uva@gmail.com
 
-Profesores implicados:
-Ruth Fernández
-Macarena Cuenca
+#### Profesores implicados:
+- Ruth Fernández
+- Macarena Cuenca
