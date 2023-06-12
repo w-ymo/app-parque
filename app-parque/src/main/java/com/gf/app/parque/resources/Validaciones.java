@@ -58,20 +58,15 @@ public class Validaciones {
      * @return true -> es correcto, false -> no es correcto
      */
     public static boolean validateName(String nombre) {
-        try {
-            if (nombre.isEmpty() || nombre.isBlank()) {
+        if (nombre.isEmpty() || nombre.isBlank()) {
+            return false;
+        }
+        nombre = nombre.toUpperCase();
+        for (int i = 0; i < nombre.length(); i++) {
+            if (!Character.isAlphabetic(nombre.charAt(i)) && nombre.charAt(i) != 'Ñ') {
                 return false;
             }
-            nombre = nombre.toUpperCase();
-            for (int i = 0; i < nombre.length(); i++) {
-                if (nombre.charAt(i) >= 'A' && nombre.charAt(i) <= 'Z' || nombre.charAt(i) == 'Ñ') {
-                    return false;
-                }
-            }
-        } catch (NullPointerException ex) {
-            return false;
         }
         return true;
     }
-
 }

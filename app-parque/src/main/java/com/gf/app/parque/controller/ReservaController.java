@@ -120,7 +120,7 @@ public class ReservaController {
      * @return true -> si es valido, false -> si no lo es
      */
     private boolean validateInputs() {
-        if (Validaciones.validateName(vista.getNombreEvento().getText())) {
+        if (!Validaciones.validateName(vista.getNombreEvento().getText())) {
             errorMsg = 1;
             return false;
         }
@@ -242,7 +242,7 @@ public class ReservaController {
         setWhite();
         switch (errorMsg) {
             case 1 -> {
-                JOptionPane.showMessageDialog(vista, "Error. Nombre del evento vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Error. Nombre del evento vacío o no válido.", "ERROR", JOptionPane.ERROR_MESSAGE);
                 vista.getNombreEvento().setBackground(Colors.RED_BACKGROUND);
             }
             case 2 -> {
