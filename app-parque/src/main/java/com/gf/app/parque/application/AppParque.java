@@ -8,11 +8,17 @@ import com.gf.app.parque.controller.InicioController;
 import com.gf.app.parque.view.GUIInicio;
 
 /**
- *
- * @author noelp
+ * AppParque: clase desde donde se ejecuta la aplicacion.
+ * 
+ * @author priparno
  */
 public class AppParque {
 
+    /**
+     * main: ejecuta la aplicacion.
+     * 
+     * @param args los argumentos de linea de comando.
+     */
     public static void main(String[] args) {
         GUIInicio in = new GUIInicio();
         InicioController ic = new InicioController(in);
