@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2023 a las 17:46:29
+-- Tiempo de generación: 12-06-2023 a las 13:20:46
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,6 @@ CREATE TABLE `administrador` (
   `telefono_admin` varchar(9) NOT NULL,
   `correo_admin` varchar(50) NOT NULL,
   `puesto_admin` varchar(50) NOT NULL,
-  `username_admin` varchar(20) NOT NULL,
   `password_admin` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,8 +41,11 @@ CREATE TABLE `administrador` (
 -- Volcado de datos para la tabla `administrador`
 --
 
-INSERT INTO `administrador` (`dni_admin`, `nombre_admin`, `apellidos_admin`, `telefono_admin`, `correo_admin`, `puesto_admin`, `username_admin`, `password_admin`) VALUES
-('12427920P', 'Noel', 'Prieto Pardo', '655655655', 'noel.prieto.uva@gmail.com', 'MONITOR', '', 'macarrones');
+INSERT INTO `administrador` (`dni_admin`, `nombre_admin`, `apellidos_admin`, `telefono_admin`, `correo_admin`, `puesto_admin`, `password_admin`) VALUES
+('12344321Z', 'AdminPrueba4', '', '', '', '', ''),
+('12345678Z', 'AdminPrueba1', '', '', '', '', ''),
+('55555555K', 'AdminPrueba3', '', '', '', '', ''),
+('87654321X', 'AdminPrueba2', '', '', '', '', '87654321');
 
 -- --------------------------------------------------------
 
@@ -55,10 +57,10 @@ CREATE TABLE `evento` (
   `id_evento` int(11) NOT NULL,
   `nombre_evento` varchar(100) NOT NULL,
   `fecha_evento` date NOT NULL,
-  `numero_integrantes` int(11) NOT NULL,
-  `numero_sala` int(11) DEFAULT NULL,
+  `numero_sala` int(11) NOT NULL,
+  `numero_personas` int(11) NOT NULL,
   `es_cumple` tinyint(1) NOT NULL,
-  `id_menu` int(11) DEFAULT NULL
+  `id_menu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -78,9 +80,9 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id_menu`, `nombre_menu`, `precio_menu`) VALUES
-(1, 'Menu Verde', 7.5),
-(2, 'Menu Amarillo', 9.75),
-(3, 'Menu Rojo', 12.25);
+(1, 'Menú verde', 7.5),
+(2, 'Menú amarillo', 10),
+(3, 'Menú rojo', 12.5);
 
 --
 -- Índices para tablas volcadas
@@ -97,7 +99,7 @@ ALTER TABLE `administrador`
 --
 ALTER TABLE `evento`
   ADD PRIMARY KEY (`id_evento`),
-  ADD KEY `id_menu` (`id_menu`);
+  ADD UNIQUE KEY `id_menu` (`id_menu`);
 
 --
 -- Indices de la tabla `menu`
@@ -113,23 +115,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `evento`
---
-ALTER TABLE `evento`
-  ADD CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`) ON DELETE SET NULL ON UPDATE SET NULL;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
