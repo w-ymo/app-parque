@@ -1,2 +1,2 @@
 # app-parque
-Proyecto fin de curso Entornos de Desarrollo gregorio Fernandez
+Proyecto fin de curso Entornos de Desarrollo Gregorio Fernández
