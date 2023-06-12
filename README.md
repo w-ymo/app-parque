@@ -1,6 +1,8 @@
 # INFORMACIÓN
 Proyecto Desarrollo Software para el módulo Entornos de Desarrollo en el CPrFP Gregorio Fernández 2022/2023.
+###### 
 Parte del proyecto relativo a Entornos de Desarrollo del proyecto Intermodular de Entornos de Desarrollo y Bases de datos.
+######
 Realizado por: Eduardo Martín-Sonseca Alonso, Mario Ortúñez Sanz y Noel Prieto Pardo
 
 ## ARCHIVOS
