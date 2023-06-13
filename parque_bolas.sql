@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2023 a las 13:20:46
+-- Tiempo de generación: 13-06-2023 a las 13:10:36
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -57,11 +57,18 @@ CREATE TABLE `evento` (
   `id_evento` int(11) NOT NULL,
   `nombre_evento` varchar(100) NOT NULL,
   `fecha_evento` date NOT NULL,
-  `numero_sala` int(11) NOT NULL,
+  `numero_sala` int(11) DEFAULT NULL,
   `numero_personas` int(11) NOT NULL,
   `es_cumple` tinyint(1) NOT NULL,
-  `id_menu` int(11) NOT NULL
+  `id_menu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `evento`
+--
+
+INSERT INTO `evento` (`id_evento`, `nombre_evento`, `fecha_evento`, `numero_sala`, `numero_personas`, `es_cumple`, `id_menu`) VALUES
+(1, 'Fiesta', '2023-06-13', NULL, 5, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -115,7 +122,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `menu`
