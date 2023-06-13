@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2023 a las 13:10:36
+-- Tiempo de generación: 13-06-2023 a las 13:47:47
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -63,13 +63,6 @@ CREATE TABLE `evento` (
   `id_menu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `evento`
---
-
-INSERT INTO `evento` (`id_evento`, `nombre_evento`, `fecha_evento`, `numero_sala`, `numero_personas`, `es_cumple`, `id_menu`) VALUES
-(1, 'Fiesta', '2023-06-13', NULL, 5, 1, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -106,7 +99,7 @@ ALTER TABLE `administrador`
 --
 ALTER TABLE `evento`
   ADD PRIMARY KEY (`id_evento`),
-  ADD UNIQUE KEY `id_menu` (`id_menu`);
+  ADD KEY `FK_MENU` (`id_menu`);
 
 --
 -- Indices de la tabla `menu`
@@ -122,13 +115,23 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `evento`
+--
+ALTER TABLE `evento`
+  ADD CONSTRAINT `FK_MENU` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
