@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  * EventoDAO: es la clase de acceso a datos de la base de datos, en concreto la
@@ -38,7 +39,7 @@ public class EventoDAO {
      * sintactico o base de datos no encontrada)
      */
     public int insert(Evento e) throws SQLException {
-        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, numero_sala, es_cumple, id_menu) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_personas, numero_sala, es_cumple, id_menu) VALUES (?,?,?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, e.getNombre_evento());
@@ -62,7 +63,7 @@ public class EventoDAO {
      * sintactico o base de datos no encontrada)
      */
     public int insertWOIdMenu(Evento e) throws SQLException {
-        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, numero_sala, es_cumple) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_personas, numero_sala, es_cumple) VALUES (?,?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, e.getNombre_evento());
@@ -85,7 +86,7 @@ public class EventoDAO {
      * sintactico o base de datos no encontrada)
      */
     public int insertWONumSala(Evento e) throws SQLException {
-        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, es_cumple, id_menu) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_personas, es_cumple, id_menu) VALUES (?,?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, e.getNombre_evento());
@@ -108,7 +109,7 @@ public class EventoDAO {
      * sintactico o base de datos no encontrada)
      */
     public int insertWONumSalaIdMenu(Evento e) throws SQLException {
-        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_integrantes, es_cumple) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO evento (nombre_evento, fecha_evento, numero_personas, es_cumple) VALUES (?,?,?,?)";
         try ( Connection con = ConexionBD.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, e.getNombre_evento());
@@ -118,5 +119,4 @@ public class EventoDAO {
             return ps.executeUpdate();
         }
     }
-
 }
