@@ -192,7 +192,7 @@ public class ReservaController {
      */
     private Integer getSelectedSala() {
         Integer numero = null;
-        if (vista.getOpcionesMenu().getSelectedIndex() > 1) {
+        if (vista.getOpcionesSala().getSelectedIndex() != 0) {
             String selected = (String) vista.getOpcionesSala().getSelectedItem();
             String[] partes = selected.split("\\.");
             numero = Integer.valueOf(partes[0]);

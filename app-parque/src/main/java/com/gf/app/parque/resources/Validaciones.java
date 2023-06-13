@@ -63,7 +63,7 @@ public class Validaciones {
         }
         nombre = nombre.toUpperCase();
         for (int i = 0; i < nombre.length(); i++) {
-            if (!Character.isAlphabetic(nombre.charAt(i)) && nombre.charAt(i) != 'Ñ') {
+            if (!Character.isAlphabetic(nombre.charAt(i)) && nombre.charAt(i) != 'Ñ' && nombre.charAt(i) != ' ') {
                 return false;
             }
         }
